@@ -1,0 +1,23 @@
+# Files in the repo that must NOT be published to the live site.
+# Workers static assets deploys the repo root ("assets.directory": "."),
+# so anything not excluded here is publicly fetchable.
+
+# Internal content briefs and working documents
+briefs/
+templates/
+canonical-audit-report.csv
+
+# Claude/agent skill folders - not part of the website
+SKILL.md
+Impeccable-skill/
+skill-main/
+taste-skill-main/
+
+# NOTE: img/*.jpg and img/*.png are deliberately NOT excluded.
+# The pages serve img/opt/*.webp, but og:image, twitter:image and
+# schema.org "image" still point at the original files.
+
+# Repo metadata
+.git/
+.gitignore
+node_modules/
