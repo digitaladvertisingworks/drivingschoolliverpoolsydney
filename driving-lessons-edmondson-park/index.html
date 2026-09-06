@@ -7,7 +7,9 @@
   <meta name="description" content="Book structured automatic driving lessons in Edmondson Park with a government-accredited local instructor. Calm one-on-one lessons, Liverpool test route preparation, and flexible lesson packages.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://drivingschoolliverpool.sydney/driving-lessons-edmondson-park/">
-  <link rel="icon" type="image/png" href="../img/driving-lessons-fav.png">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/opt/favicon-32.png">
+  <link rel="apple-touch-icon" href="../img/opt/apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Driving Lessons Edmondson Park | Automatic Lessons and Test Preparation">
   <meta property="og:description" content="Structured driving lessons in Edmondson Park for beginners, nervous learners, adult students and local driving test preparation.">
@@ -15,8 +17,9 @@
   <meta property="og:image" content="https://drivingschoolliverpool.sydney/img/learner-driver-lessons-liverpool-sydney-south-driving-school.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/main.css">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;800&amp;family=Barlow+Condensed:wght@700;800&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;800&amp;family=Barlow+Condensed:wght@700;800&amp;display=swap"></noscript>
+  <link rel="stylesheet" href="../css/main.css?v=20260906">
   <style>
     .service-page-hero {
       background: linear-gradient(180deg, #fbfbf8 0%, #f2f4ee 100%);
@@ -434,7 +437,7 @@
         "image": "https://drivingschoolliverpool.sydney/img/driving-lessons-liverpool-center.png",
         "url": "https://drivingschoolliverpool.sydney/",
         "telephone": "+61-2-8776-1815",
-        "email": "liverpool@sydneysouth.net",
+        "email": "info@drivingschoolliverpool.sydney",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Liverpool",
@@ -540,10 +543,6 @@
     ]
   }
   </script>
-  <script src="https://fast.wistia.com/player.js" async></script>
-  <script src="https://fast.wistia.com/embed/9tjo42284x.js" async type="module"></script>
-  <script src="https://fast.wistia.com/embed/6pqf49lotn.js" async type="module"></script>
-  <script src="https://fast.wistia.com/embed/4qoptn1e6q.js" async type="module"></script>
   <style>
     wistia-player[media-id='9tjo42284x']:not(:defined) {
       background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/9tjo42284x/swatch');
@@ -564,12 +563,41 @@
       padding-top: 174.17%;
     }
   </style>
+  <script>
+    /* Wistia is loaded only when the video section nears the viewport. */
+    (function () {
+      var srcs = ["https://fast.wistia.com/player.js", "https://fast.wistia.com/embed/9tjo42284x.js", "https://fast.wistia.com/embed/6pqf49lotn.js", "https://fast.wistia.com/embed/4qoptn1e6q.js"];
+      var loaded = false;
+      function load() {
+        if (loaded) return;
+        loaded = true;
+        srcs.forEach(function (s) {
+          var el = document.createElement('script');
+          el.src = s;
+          if (s.indexOf('/embed/') > -1) el.type = 'module';
+          el.async = true;
+          document.head.appendChild(el);
+        });
+      }
+      function watch() {
+        var t = document.querySelector('wistia-player');
+        if (!t) return;
+        if (!('IntersectionObserver' in window)) return load();
+        var io = new IntersectionObserver(function (es) {
+          if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); }
+        }, { rootMargin: '600px' });
+        io.observe(t);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch);
+      else watch();
+    })();
+  </script>
 </head>
 <body>
   <header class="site-header">
     <div class="container site-header__inner">
       <a class="brand" href="../" aria-label="Driving School Liverpool Centre home">
-        <img class="brand__logo" src="../img/driving-lessons-liverpool-center.png" alt="Driving School Liverpool Centre">
+        <img class="brand__logo" src="../img/opt/driving-lessons-liverpool-center.webp" alt="Driving School Liverpool Centre" width="500" height="211" decoding="async">
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a href="../">Home</a>
@@ -601,19 +629,18 @@
             <li>Edmondson Park and Liverpool route knowledge</li>
           </ul>
           <div class="hero__proof" aria-label="Review platform trust badges">
-            <img src="../img/google_800x400.jpg" alt="Google Top Rated Services 2026 review badge" width="800" height="400">
-            <img src="../img/proven-expert-point_800x400.jpg" alt="Proven Expert 4.8 star review badge" width="800" height="400">
-            <img src="../img/trustpilot-point_800x400.jpg" alt="Trustpilot 4.5 star review badge" width="800" height="400">
+            <img src="../img/opt/google_800x400.webp" alt="Google Top Rated Services 2026 review badge" width="400" height="200" decoding="async">
+            <img src="../img/opt/proven-expert-point_800x400.webp" alt="Proven Expert 4.8 star review badge" width="400" height="200" decoding="async">
+            <img src="../img/opt/trustpilot-point_800x400.webp" alt="Trustpilot 4.5 star review badge" width="400" height="200" decoding="async">
           </div>
         </div>
 
         <figure class="page-hero__media">
           <img
-            src="../img/learner-driver-lessons-liverpool-sydney-south-driving-school.jpg"
+            src="../img/opt/learner-driver-lessons-liverpool-sydney-south-driving-school.webp"
             alt="Learner driver in Edmondson Park building confidence during a structured local lesson"
-            width="1600"
-            height="1066"
-          >
+            width="1000"
+            height="1333" decoding="async" loading="lazy">
         </figure>
       </div>
     </section>
@@ -734,7 +761,7 @@
           </ul>
         </div>
         <div class="service-media">
-          <img src="../img/learning-to-drive-in-parking-lot-driving-lessons-liverpool.jpg" alt="Learner driver practising with an instructor during a local lesson">
+          <img src="../img/opt/learning-to-drive-in-parking-lot-driving-lessons-liverpool.webp" alt="Learner driver practising with an instructor during a local lesson" width="1000" height="1090" decoding="async" loading="lazy">
         </div>
       </div>
     </section>
@@ -823,7 +850,7 @@
           </ul>
         </div>
         <div class="service-media">
-          <img src="../img/new-driver-holding-permit-driving-lessons-liverpool.jpg" alt="New driver holding permit after successful driving lesson progress">
+          <img src="../img/opt/new-driver-holding-permit-driving-lessons-liverpool.webp" alt="New driver holding permit after successful driving lesson progress" width="1000" height="1090" decoding="async" loading="lazy">
         </div>
       </div>
     </section>
@@ -837,28 +864,28 @@
         </div>
         <div class="service-card-grid">
           <article class="service-card">
-            <img src="../img/service-nsw-learning-license-learner-driver-lessons-liverpool.jpg" alt="Learner licence support and beginner lesson planning">
+            <img src="../img/opt/service-nsw-learning-license-learner-driver-lessons-liverpool.webp" alt="Learner licence support and beginner lesson planning" width="1000" height="1333" decoding="async" loading="lazy">
             <div class="service-card__body">
               <h3>Beginner lesson planning</h3>
               <p>Start with car controls, moving off, steering, braking, mirrors, scanning and calm low-pressure practice.</p>
             </div>
           </article>
           <article class="service-card">
-            <img src="../img/learner-driver-lessons-liverpool-smiling-student-holding-permit.jpg" alt="Adult learner and nervous driver support">
+            <img src="../img/opt/learner-driver-lessons-liverpool-smiling-student-holding-permit.webp" alt="Adult learner and nervous driver support" width="1000" height="1333" decoding="async" loading="lazy">
             <div class="service-card__body">
               <h3>Nervous driver support</h3>
               <p>Lessons are broken into small steps so anxious learners can repeat each skill until it feels steady and familiar.</p>
             </div>
           </article>
           <article class="service-card">
-            <img src="../img/learner-driver-lessons-liverpool-parking-lot-success.jpg" alt="Parking and manoeuvre practice during local driving lessons">
+            <img src="../img/opt/learner-driver-lessons-liverpool-parking-lot-success.webp" alt="Parking and manoeuvre practice during local driving lessons" width="1000" height="1333" decoding="async" loading="lazy">
             <div class="service-card__body">
               <h3>Parking and manoeuvres</h3>
               <p>Reverse parking, kerbside parking, turns, observation checks and space judgement are practised with clear feedback.</p>
             </div>
           </article>
           <article class="service-card">
-            <img src="../img/learner-driver-lessons-liverpool-new-driver-successful-test.jpg" alt="Driving test preparation with a successful learner driver">
+            <img src="../img/opt/learner-driver-lessons-liverpool-new-driver-successful-test.webp" alt="Driving test preparation with a successful learner driver" width="1000" height="1333" decoding="async" loading="lazy">
             <div class="service-card__body">
               <h3>Driving test preparation</h3>
               <p>Local route preparation focuses on observation, hazard awareness, school zones, intersections and calm decision-making.</p>
@@ -954,7 +981,7 @@
     <section class="section" id="routes">
       <div class="container service-split">
         <div class="service-media">
-          <img src="../img/Learner-driver-training-wilby-street.jpg" alt="Local learner driver training on suburban roads">
+          <img src="../img/opt/Learner-driver-training-wilby-street.webp" alt="Local learner driver training on suburban roads" width="1000" height="750" decoding="async" loading="lazy">
         </div>
         <div class="service-panel service-panel--dark">
           <span class="service-eyebrow">Local route knowledge</span>
@@ -1017,22 +1044,22 @@
         </div>
         <div class="service-accreditation-grid" aria-label="Accreditation and membership logos">
           <article class="service-accreditation-card">
-            <img src="../img/accreditation-2667.jpg" alt="Australian Driver Trainers Association accreditation">
+            <img src="../img/opt/accreditation-2667.webp" alt="Australian Driver Trainers Association accreditation" width="300" height="300" decoding="async" loading="lazy">
           </article>
           <article class="service-accreditation-card">
-            <img src="../img/accreditation-3.jpg" alt="NSW driving instructor accreditation">
+            <img src="../img/opt/accreditation-3.webp" alt="NSW driving instructor accreditation" width="300" height="300" decoding="async" loading="lazy">
           </article>
           <article class="service-accreditation-card">
-            <img src="../img/accreditation-6.jpg" alt="Working with Children Check">
+            <img src="../img/opt/accreditation-6.webp" alt="Working with Children Check" width="300" height="300" decoding="async" loading="lazy">
           </article>
           <article class="service-accreditation-card">
-            <img src="../img/accreditation-b6.jpg" alt="Transport for NSW related accreditation">
+            <img src="../img/opt/accreditation-b6.webp" alt="Transport for NSW related accreditation" width="300" height="300" decoding="async" loading="lazy">
           </article>
           <article class="service-accreditation-card">
-            <img src="../img/accreditation-ba6.jpg" alt="NSW Safer Drivers Course provider logo">
+            <img src="../img/opt/accreditation-ba6.webp" alt="NSW Safer Drivers Course provider logo" width="300" height="300" decoding="async" loading="lazy">
           </article>
           <article class="service-accreditation-card">
-            <img src="../img/national police check-logo.jpg" alt="National Police Check logo">
+            <img src="../img/opt/national police check-logo.webp" alt="National Police Check logo" width="300" height="300" decoding="async" loading="lazy">
           </article>
         </div>
       </div>
@@ -1072,32 +1099,32 @@
 
         <div class="accreditation-grid">
           <article class="accreditation-card">
-            <img src="../img/accreditation-2667.jpg" alt="Australian Driver Trainers Association logo" width="447" height="447">
+            <img src="../img/opt/accreditation-2667.webp" alt="Australian Driver Trainers Association logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>Australian Driver Trainers Association</h3>
             <p>Industry association badge showing professional membership within the Australian driver trainer sector.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/accreditation-3.jpg" alt="NSW Government accredited logo" width="300" height="300">
+            <img src="../img/opt/accreditation-3.webp" alt="NSW Government accredited logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>NSW Government Accredited</h3>
             <p>NSW Government accreditation badge signalling recognised standards for approved instruction services.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/accreditation-6.jpg" alt="NSW Office of the Children&apos;s Guardian Working with Children Check logo" width="300" height="300">
+            <img src="../img/opt/accreditation-6.webp" alt="NSW Office of the Children&apos;s Guardian Working with Children Check logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>Working with Children Check</h3>
             <p>NSW Office of the Children&apos;s Guardian screening badge for work involving children and younger learners.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/accreditation-b6.jpg" alt="Transport for NSW logo" width="300" height="300">
+            <img src="../img/opt/accreditation-b6.webp" alt="Transport for NSW logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>Transport for NSW</h3>
             <p>Transport for NSW badge reflecting alignment with current NSW road rules and learner-driver requirements.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/accreditation-ba6.jpg" alt="New South Wales Safer Drivers Course logo" width="300" height="300">
+            <img src="../img/opt/accreditation-ba6.webp" alt="New South Wales Safer Drivers Course logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>New South Wales Safer Drivers Course</h3>
             <p>Official Safer Drivers Course program badge connected with hazard awareness and lower-risk learner driving habits.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/national police check-logo.jpg" alt="NSW Police Force National Police Check logo" width="300" height="300">
+            <img src="../img/opt/national police check-logo.webp" alt="NSW Police Force National Police Check logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>NSW Police Force National Police Check</h3>
             <p>Police check trust badge confirming background screening and adding reassurance for students and parents.</p>
           </article>
@@ -1148,7 +1175,7 @@
           </div>
         </div>
         <div class="final-cta__media">
-          <img src="../img/driving-lessons-service-nsw-liverpool-orange-grove.jpg" alt="Driving school vehicle parked near local testing area">
+          <img src="../img/opt/driving-lessons-service-nsw-liverpool-orange-grove.webp" alt="Driving school vehicle parked near local testing area" width="1000" height="750" decoding="async" loading="lazy">
         </div>
       </div>
     </section>
@@ -1170,11 +1197,10 @@
         </div>
         <img
           class="footer-brand__logo"
-          src="../img/driving-lessons-liverpool-center-nsw.jpg"
+          src="../img/opt/driving-lessons-liverpool-center-nsw.webp"
           alt="Driving School Liverpool Centre"
-          width="1254"
-          height="530"
-        >
+          width="1000"
+          height="1066" decoding="async" loading="lazy">
       </div>
 
       <div class="footer-column">
@@ -1183,6 +1209,7 @@
           <li><a href="https://sydneysouth.appointy.com/" target="_blank" rel="noreferrer">Book Driving Lesson</a></li>
           <li><a href="../about-us/">About Us</a></li>
           <li><a href="../contact-us/">Contact Us</a></li>
+          <li><a href="../driving-instructors-liverpool/">Driving Instructors Liverpool</a></li>
           <li><a href="#packages">Lesson Pricing</a></li>
           <li><a href="../index.html#reviews">Student Reviews</a></li>
           <li><a href="../index.html#area">Service Areas</a></li>
@@ -1210,11 +1237,10 @@
           <p>Secure payment online with VISA, MASTERCARD, AMERICAN EXPRESS and PayPal</p>
           <div class="footer-payment-badges" aria-label="Accepted payment methods">
             <img
-              src="../img/Secure-Payment-Driving-Lesson_243x40.png"
+              src="../img/opt/Secure-Payment-Driving-Lesson_243x40.webp"
               alt="Secure payment options including PayPal, Mastercard, Visa and American Express"
               width="243"
-              height="40"
-            >
+              height="40" decoding="async" loading="lazy">
           </div>
         </div>
       </div>
@@ -1231,6 +1257,6 @@
     </div>
   </footer>
 
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js?v=20260906" defer></script>
 </body>
 </html>

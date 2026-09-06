@@ -16,7 +16,9 @@
   <meta name="twitter:title" content="Driving Instructors Liverpool | Qualified, Patient, Local | Driving School Liverpool Centre">
   <meta name="twitter:description" content="One-on-one lessons with a named, Transport for NSW-accredited driving instructor in Liverpool. Same instructor every lesson. Pick-up from Liverpool, Casula, Moorebank and surrounding suburbs. From $80.">
   <meta name="twitter:image" content="https://drivingschoolliverpool.sydney/img/service-nsw-learning-license-learner-driver-lessons-liverpool.jpg">
-  <link rel="icon" type="image/png" href="../img/driving-lessons-fav.png">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/opt/favicon-32.png">
+  <link rel="apple-touch-icon" href="../img/opt/apple-touch-icon.png">
 
   <script type="application/ld+json">
   {
@@ -191,12 +193,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/main.css">
-  <script src="https://fast.wistia.com/player.js" async></script>
-  <script src="https://fast.wistia.com/embed/9tjo42284x.js" async type="module"></script>
-  <script src="https://fast.wistia.com/embed/6pqf49lotn.js" async type="module"></script>
-  <script src="https://fast.wistia.com/embed/4qoptn1e6q.js" async type="module"></script>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;800&amp;family=Barlow+Condensed:wght@700;800&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;800&amp;family=Barlow+Condensed:wght@700;800&amp;display=swap"></noscript>
+  <link rel="stylesheet" href="../css/main.css?v=20260906">
   <style>
     wistia-player[media-id='9tjo42284x']:not(:defined) {
       background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/9tjo42284x/swatch');
@@ -217,6 +216,35 @@
       padding-top: 174.17%;
     }
   </style>
+  <script>
+    /* Wistia is loaded only when the video section nears the viewport. */
+    (function () {
+      var srcs = ["https://fast.wistia.com/player.js", "https://fast.wistia.com/embed/9tjo42284x.js", "https://fast.wistia.com/embed/6pqf49lotn.js", "https://fast.wistia.com/embed/4qoptn1e6q.js"];
+      var loaded = false;
+      function load() {
+        if (loaded) return;
+        loaded = true;
+        srcs.forEach(function (s) {
+          var el = document.createElement('script');
+          el.src = s;
+          if (s.indexOf('/embed/') > -1) el.type = 'module';
+          el.async = true;
+          document.head.appendChild(el);
+        });
+      }
+      function watch() {
+        var t = document.querySelector('wistia-player');
+        if (!t) return;
+        if (!('IntersectionObserver' in window)) return load();
+        var io = new IntersectionObserver(function (es) {
+          if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); }
+        }, { rootMargin: '600px' });
+        io.observe(t);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch);
+      else watch();
+    })();
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -226,11 +254,10 @@
       <a class="brand" href="../" aria-label="Driving School Liverpool Centre home">
         <img
           class="brand__logo"
-          src="../img/driving-lessons-liverpool-center.png"
+          src="../img/opt/driving-lessons-liverpool-center.webp"
           alt="Driving School Liverpool Centre"
-          width="1254"
-          height="530"
-        >
+          width="500"
+          height="211" decoding="async">
       </a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
@@ -276,19 +303,18 @@
             <li>Pick-up and drop-off included</li>
           </ul>
           <div class="hero__proof" aria-label="Review platform trust badges">
-            <img src="../img/google_800x400.jpg" alt="Google Top Rated Services 2026 review badge" width="800" height="400">
-            <img src="../img/proven-expert-point_800x400.jpg" alt="Proven Expert 4.8 star review badge" width="800" height="400">
-            <img src="../img/trustpilot-point_800x400.jpg" alt="Trustpilot 4.5 star review badge" width="800" height="400">
+            <img src="../img/opt/google_800x400.webp" alt="Google Top Rated Services 2026 review badge" width="400" height="200" decoding="async">
+            <img src="../img/opt/proven-expert-point_800x400.webp" alt="Proven Expert 4.8 star review badge" width="400" height="200" decoding="async">
+            <img src="../img/opt/trustpilot-point_800x400.webp" alt="Trustpilot 4.5 star review badge" width="400" height="200" decoding="async">
           </div>
         </div>
 
         <figure class="page-hero__media">
           <img
-            src="../img/service-nsw-learning-license-learner-driver-lessons-liverpool.jpg"
+            src="../img/opt/service-nsw-learning-license-learner-driver-lessons-liverpool.webp"
             alt="Learner driver in Liverpool receiving their Service NSW learner licence after booking a driving instructor"
-            width="1600"
-            height="1066"
-          >
+            width="1000"
+            height="1333" decoding="async" loading="lazy">
         </figure>
       </div>
     </section>
@@ -370,11 +396,10 @@
       <div class="container page-shell-grid">
         <figure class="page-shell-media">
           <img
-            src="../img/learner-driver-lessons-liverpool-sydney-south-driving-school.jpg"
+            src="../img/opt/learner-driver-lessons-liverpool-sydney-south-driving-school.webp"
             alt="Driving School Liverpool Centre instructor with a learner driver preparing for a lesson in Liverpool NSW"
-            width="1600"
-            height="1066"
-          >
+            width="1000"
+            height="1333" decoding="async" loading="lazy">
         </figure>
 
         <div class="page-shell-copy">
@@ -464,11 +489,10 @@
 
         <figure class="page-shell-media">
           <img
-            src="../img/learner-driver-lessons-liverpool-new-driver-successful-test.jpg"
+            src="../img/opt/learner-driver-lessons-liverpool-new-driver-successful-test.webp"
             alt="Liverpool learner driver celebrating after passing the Service NSW driving test at the Casula testing centre"
-            width="1600"
-            height="1066"
-          >
+            width="1000"
+            height="1333" decoding="async" loading="lazy">
         </figure>
       </div>
     </section>
@@ -583,32 +607,32 @@
 
         <div class="accreditation-grid">
           <article class="accreditation-card">
-            <img src="../img/accreditation-2667.jpg" alt="Australian Driver Trainers Association logo" width="447" height="447">
+            <img src="../img/opt/accreditation-2667.webp" alt="Australian Driver Trainers Association logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>Australian Driver Trainers Association</h3>
             <p>Industry association membership within the Australian driver trainer sector, reflecting commitment to professional standards.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/accreditation-3.jpg" alt="NSW Government accredited logo" width="300" height="300">
+            <img src="../img/opt/accreditation-3.webp" alt="NSW Government accredited logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>NSW Government Accredited</h3>
             <p>NSW Government accreditation confirming the instructor meets recognised standards for approved driving instruction services.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/accreditation-6.jpg" alt="NSW Office of the Children&apos;s Guardian Working with Children Check logo" width="300" height="300">
+            <img src="../img/opt/accreditation-6.webp" alt="NSW Office of the Children&apos;s Guardian Working with Children Check logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>Working with Children Check</h3>
             <p>NSW Office of the Children's Guardian screening. Reassurance for parents booking lessons for younger learners.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/accreditation-b6.jpg" alt="Transport for NSW logo" width="300" height="300">
+            <img src="../img/opt/accreditation-b6.webp" alt="Transport for NSW logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>Transport for NSW</h3>
             <p>Transport for NSW authorised instructor badge, reflecting current NSW road rules, learner-driver requirements and accreditation standards.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/accreditation-ba6.jpg" alt="New South Wales Safer Drivers Course logo" width="300" height="300">
+            <img src="../img/opt/accreditation-ba6.webp" alt="New South Wales Safer Drivers Course logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>New South Wales Safer Drivers Course</h3>
             <p>Official Safer Drivers Course program badge, connected with hazard awareness and lower-risk learner driving habits across NSW.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/national police check-logo.jpg" alt="NSW Police Force National Police Check logo" width="300" height="300">
+            <img src="../img/opt/national police check-logo.webp" alt="NSW Police Force National Police Check logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>NSW Police Force National Police Check</h3>
             <p>Police check trust badge confirming background screening — adding reassurance for students and parents when choosing an instructor.</p>
           </article>
@@ -690,11 +714,10 @@
 
         <figure class="final-cta__media">
           <img
-            src="../img/learner-driver-lessons-liverpool-p-plate-success.jpg"
+            src="../img/opt/learner-driver-lessons-liverpool-p-plate-success.webp"
             alt="New Liverpool driver displaying P plates after passing the driving test with Driving School Liverpool Centre"
-            width="1096"
-            height="822"
-          >
+            width="1000"
+            height="1333" decoding="async" loading="lazy">
         </figure>
       </div>
     </section>
@@ -716,11 +739,10 @@
         </div>
         <img
           class="footer-brand__logo"
-          src="../img/driving-lessons-liverpool-center-nsw.jpg"
+          src="../img/opt/driving-lessons-liverpool-center-nsw.webp"
           alt="Driving School Liverpool Centre"
-          width="1254"
-          height="530"
-        >
+          width="1000"
+          height="1066" decoding="async" loading="lazy">
       </div>
 
       <div class="footer-column">
@@ -757,11 +779,10 @@
           <p>Secure payment online with VISA, MASTERCARD, AMERICAN EXPRESS and PayPal</p>
           <div class="footer-payment-badges" aria-label="Accepted payment methods">
             <img
-              src="../img/Secure-Payment-Driving-Lesson_243x40.png"
+              src="../img/opt/Secure-Payment-Driving-Lesson_243x40.webp"
               alt="Secure payment options including PayPal, Mastercard, Visa and American Express"
               width="243"
-              height="40"
-            >
+              height="40" decoding="async" loading="lazy">
           </div>
         </div>
       </div>
@@ -778,6 +799,6 @@
     </div>
   </footer>
 
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js?v=20260906" defer></script>
 </body>
 </html>

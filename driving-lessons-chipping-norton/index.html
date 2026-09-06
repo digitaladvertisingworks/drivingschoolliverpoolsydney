@@ -16,7 +16,9 @@
   <meta name="twitter:title" content="Driving Lessons Chipping Norton | Driving School Liverpool Center">
   <meta name="twitter:description" content="One-on-one driving lessons in Chipping Norton with a qualified, Transport for NSW accredited instructor. Structured lesson plans, Liverpool test route preparation and pick-up from $80.">
   <meta name="twitter:image" content="https://drivingschoolliverpool.sydney/img/learner-driver-lessons-liverpool-p-plate-success.jpg">
-  <link rel="icon" type="image/png" href="../img/driving-lessons-fav.png">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/opt/favicon-32.png">
+  <link rel="apple-touch-icon" href="../img/opt/apple-touch-icon.png">
 
   <script type="application/ld+json">
   {
@@ -151,12 +153,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/main.css">
-  <script src="https://fast.wistia.com/player.js" async></script>
-  <script src="https://fast.wistia.com/embed/9tjo42284x.js" async type="module"></script>
-  <script src="https://fast.wistia.com/embed/6pqf49lotn.js" async type="module"></script>
-  <script src="https://fast.wistia.com/embed/4qoptn1e6q.js" async type="module"></script>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;800&amp;family=Barlow+Condensed:wght@700;800&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;800&amp;family=Barlow+Condensed:wght@700;800&amp;display=swap"></noscript>
+  <link rel="stylesheet" href="../css/main.css?v=20260906">
   <style>
     wistia-player[media-id='9tjo42284x']:not(:defined) {
       background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/9tjo42284x/swatch');
@@ -177,6 +176,35 @@
       padding-top: 174.17%;
     }
   </style>
+  <script>
+    /* Wistia is loaded only when the video section nears the viewport. */
+    (function () {
+      var srcs = ["https://fast.wistia.com/player.js", "https://fast.wistia.com/embed/9tjo42284x.js", "https://fast.wistia.com/embed/6pqf49lotn.js", "https://fast.wistia.com/embed/4qoptn1e6q.js"];
+      var loaded = false;
+      function load() {
+        if (loaded) return;
+        loaded = true;
+        srcs.forEach(function (s) {
+          var el = document.createElement('script');
+          el.src = s;
+          if (s.indexOf('/embed/') > -1) el.type = 'module';
+          el.async = true;
+          document.head.appendChild(el);
+        });
+      }
+      function watch() {
+        var t = document.querySelector('wistia-player');
+        if (!t) return;
+        if (!('IntersectionObserver' in window)) return load();
+        var io = new IntersectionObserver(function (es) {
+          if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); }
+        }, { rootMargin: '600px' });
+        io.observe(t);
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch);
+      else watch();
+    })();
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -186,11 +214,10 @@
       <a class="brand" href="../" aria-label="Driving School Liverpool Center home">
         <img
           class="brand__logo"
-          src="../img/driving-lessons-liverpool-center.png"
+          src="../img/opt/driving-lessons-liverpool-center.webp"
           alt="Driving School Liverpool Center"
-          width="1254"
-          height="530"
-        >
+          width="500"
+          height="211" decoding="async">
       </a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
@@ -234,19 +261,18 @@
             <li>Manual and automatic available</li>
           </ul>
           <div class="hero__proof" aria-label="Review platform trust badges">
-            <img src="../img/google_800x400.jpg" alt="Google Top Rated Services 2026 review badge" width="800" height="400">
-            <img src="../img/proven-expert-point_800x400.jpg" alt="Proven Expert 4.8 star review badge" width="800" height="400">
-            <img src="../img/trustpilot-point_800x400.jpg" alt="Trustpilot 4.5 star review badge" width="800" height="400">
+            <img src="../img/opt/google_800x400.webp" alt="Google Top Rated Services 2026 review badge" width="400" height="200" decoding="async">
+            <img src="../img/opt/proven-expert-point_800x400.webp" alt="Proven Expert 4.8 star review badge" width="400" height="200" decoding="async">
+            <img src="../img/opt/trustpilot-point_800x400.webp" alt="Trustpilot 4.5 star review badge" width="400" height="200" decoding="async">
           </div>
         </div>
 
         <figure class="page-hero__media">
           <img
-            src="../img/learner-driver-lessons-liverpool-p-plate-success.jpg"
+            src="../img/opt/learner-driver-lessons-liverpool-p-plate-success.webp"
             alt="Learner driver in Chipping Norton celebrating their P-plate licence after structured driving lessons"
-            width="1600"
-            height="1066"
-          >
+            width="1000"
+            height="1333" decoding="async" loading="lazy">
         </figure>
       </div>
     </section>
@@ -328,11 +354,10 @@
       <div class="container page-shell-grid">
         <figure class="page-shell-media">
           <img
-            src="../img/learner-driver-lessons-liverpool-parking-lot-success.jpg"
+            src="../img/opt/learner-driver-lessons-liverpool-parking-lot-success.webp"
             alt="Learner driver practising parking during a driving lesson in Chipping Norton"
-            width="1600"
-            height="1066"
-          >
+            width="1000"
+            height="1333" decoding="async" loading="lazy">
         </figure>
 
         <div class="page-shell-copy">
@@ -422,11 +447,10 @@
 
         <figure class="page-shell-media">
           <img
-            src="../img/Driving-directions-live-traffic-road-conditions-liverppool-updates-Waze-06-05-2026_07_05_PM.jpg"
+            src="../img/opt/Driving-directions-live-traffic-road-conditions-liverppool-updates-Waze-06-05-2026_07_05_PM.webp"
             alt="South-western Sydney traffic map showing driving lesson coverage across Chipping Norton, Prestons, Cecil Hills and surrounding suburbs"
-            width="1116"
-            height="835"
-          >
+            width="1000"
+            height="759" decoding="async" loading="lazy">
         </figure>
       </div>
     </section>
@@ -541,32 +565,32 @@
 
         <div class="accreditation-grid">
           <article class="accreditation-card">
-            <img src="../img/accreditation-2667.jpg" alt="Australian Driver Trainers Association logo" width="447" height="447">
+            <img src="../img/opt/accreditation-2667.webp" alt="Australian Driver Trainers Association logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>Australian Driver Trainers Association</h3>
             <p>Industry association badge showing professional membership within the Australian driver trainer sector.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/accreditation-3.jpg" alt="NSW Government accredited logo" width="300" height="300">
+            <img src="../img/opt/accreditation-3.webp" alt="NSW Government accredited logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>NSW Government Accredited</h3>
             <p>NSW Government accreditation badge signalling recognised standards for approved instruction services.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/accreditation-6.jpg" alt="NSW Office of the Children&apos;s Guardian Working with Children Check logo" width="300" height="300">
+            <img src="../img/opt/accreditation-6.webp" alt="NSW Office of the Children&apos;s Guardian Working with Children Check logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>Working with Children Check</h3>
             <p>NSW Office of the Children&apos;s Guardian screening badge for work involving children and younger learners.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/accreditation-b6.jpg" alt="Transport for NSW logo" width="300" height="300">
+            <img src="../img/opt/accreditation-b6.webp" alt="Transport for NSW logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>Transport for NSW</h3>
             <p>Transport for NSW badge reflecting alignment with current NSW road rules and learner-driver requirements.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/accreditation-ba6.jpg" alt="New South Wales Safer Drivers Course logo" width="300" height="300">
+            <img src="../img/opt/accreditation-ba6.webp" alt="New South Wales Safer Drivers Course logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>New South Wales Safer Drivers Course</h3>
             <p>Official Safer Drivers Course program badge connected with hazard awareness and lower-risk learner driving habits.</p>
           </article>
           <article class="accreditation-card">
-            <img src="../img/national police check-logo.jpg" alt="NSW Police Force National Police Check logo" width="300" height="300">
+            <img src="../img/opt/national police check-logo.webp" alt="NSW Police Force National Police Check logo" width="300" height="300" decoding="async" loading="lazy">
             <h3>NSW Police Force National Police Check</h3>
             <p>Police check trust badge confirming background screening and adding reassurance for students and parents.</p>
           </article>
@@ -656,11 +680,10 @@
 
         <figure class="final-cta__media">
           <img
-            src="../img/service-nsw-learning-license-learner-driver-lessons-liverpool.jpg"
+            src="../img/opt/service-nsw-learning-license-learner-driver-lessons-liverpool.webp"
             alt="Learner driver in Chipping Norton prepared for the Service NSW licence test with local instructor coaching"
-            width="1096"
-            height="822"
-          >
+            width="1000"
+            height="1333" decoding="async" loading="lazy">
         </figure>
       </div>
     </section>
@@ -682,11 +705,10 @@
         </div>
         <img
           class="footer-brand__logo"
-          src="../img/driving-lessons-liverpool-center-nsw.jpg"
+          src="../img/opt/driving-lessons-liverpool-center-nsw.webp"
           alt="Driving School Liverpool Center"
-          width="1254"
-          height="530"
-        >
+          width="1000"
+          height="1066" decoding="async" loading="lazy">
       </div>
 
       <div class="footer-column">
@@ -695,6 +717,7 @@
           <li><a href="https://sydneysouth.appointy.com/" target="_blank" rel="noreferrer">Book Driving Lesson</a></li>
           <li><a href="../about-us/">About Us</a></li>
           <li><a href="../contact-us/">Contact Us</a></li>
+          <li><a href="../driving-instructors-liverpool/">Driving Instructors Liverpool</a></li>
           <li><a href="#packages">Lesson Pricing</a></li>
           <li><a href="../index.html#reviews">Student Reviews</a></li>
           <li><a href="../index.html#area">Service Areas</a></li>
@@ -722,11 +745,10 @@
           <p>Secure payment online with VISA, MASTERCARD, AMERICAN EXPRESS and PayPal</p>
           <div class="footer-payment-badges" aria-label="Accepted payment methods">
             <img
-              src="../img/Secure-Payment-Driving-Lesson_243x40.png"
+              src="../img/opt/Secure-Payment-Driving-Lesson_243x40.webp"
               alt="Secure payment options including PayPal, Mastercard, Visa and American Express"
               width="243"
-              height="40"
-            >
+              height="40" decoding="async" loading="lazy">
           </div>
         </div>
       </div>
@@ -743,6 +765,6 @@
     </div>
   </footer>
 
-  <script src="../js/main.js"></script>
+  <script src="../js/main.js?v=20260906" defer></script>
 </body>
 </html>
