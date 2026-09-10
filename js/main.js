@@ -41,3 +41,43 @@ faqButtons.forEach((button) => {
     }
   });
 });
+
+// Web3Forms enquiry form: submit in place so the visitor stays on the page.
+// Without JS the plain POST still works and Web3Forms shows its own confirmation.
+document.querySelectorAll(".enquiry-form").forEach((form) => {
+  const status = form.querySelector(".form-status");
+  const button = form.querySelector('button[type="submit"]');
+  const failure =
+    "Sorry, that did not send. Please call (02) 8776 1815 or email info@drivingschoolliverpool.sydney.";
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    button.disabled = true;
+    status.hidden = true;
+    status.classList.remove("is-error");
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form)
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        form.reset();
+        status.textContent =
+          "Thanks, your enquiry has been sent. We will reply during branch hours.";
+      } else {
+        status.classList.add("is-error");
+        status.textContent = failure;
+      }
+    } catch (error) {
+      status.classList.add("is-error");
+      status.textContent = failure;
+    }
+
+    button.disabled = false;
+    status.hidden = false;
+  });
+});

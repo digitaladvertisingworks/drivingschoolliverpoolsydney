@@ -554,45 +554,6 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=20260906" defer></script>
-  <script>
-    (function () {
-      var form = document.querySelector('.enquiry-form');
-      if (!form) { return; }
-      var status = form.querySelector('.form-status');
-      var button = form.querySelector('button[type="submit"]');
-
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        button.disabled = true;
-        status.hidden = true;
-        status.classList.remove('is-error');
-
-        fetch(form.action, {
-          method: 'POST',
-          headers: { Accept: 'application/json' },
-          body: new FormData(form)
-        })
-          .then(function (response) { return response.json(); })
-          .then(function (data) {
-            if (data.success) {
-              form.reset();
-              status.textContent = 'Thanks, your enquiry has been sent. We will reply during branch hours.';
-            } else {
-              status.classList.add('is-error');
-              status.textContent = 'Sorry, that did not send. Please call (02) 8776 1815 or email info@drivingschoolliverpool.sydney.';
-            }
-          })
-          .catch(function () {
-            status.classList.add('is-error');
-            status.textContent = 'Sorry, that did not send. Please call (02) 8776 1815 or email info@drivingschoolliverpool.sydney.';
-          })
-          .then(function () {
-            button.disabled = false;
-            status.hidden = false;
-          });
-      });
-    })();
-  </script>
+  <script src="../js/main.js?v=20260910" defer></script>
 </body>
 </html>

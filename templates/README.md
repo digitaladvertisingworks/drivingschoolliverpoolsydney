@@ -1,103 +1,100 @@
-# Reusable Page Template
+# Page templates
 
-Use [reusable-page-template.html](/C:/Users/digit/OneDrive/Documents/GitHub/drivingschoolliverpoolsydney/templates/reusable-page-template.html) as the default shell for future suburb pages, service pages and landing pages.
+Two ways to make a page live here. Use the first one for anything new.
 
-## What This Solves
+## 1. Build system (preferred)
 
-This template removes the need to redesign every new page from scratch. It keeps:
+One layout, shared header and footer, one small source file per page.
 
-- the same header and footer shell
-- the same colour palette, typography and spacing rhythm
-- the same button system and CTA placement
-- the same split layouts, service cards and pricing blocks
-- the same FAQ accordion structure used by `js/main.js`
+```
+templates/base.html               document shell: head, header slot, <main>, footer slot
+templates/partials/header.html    shared header, used by every built page
+templates/partials/footer.html    shared footer, used by every built page
+templates/partials/pricing.html   the seven published lesson packages
+templates/partials/enquiry-form.html  the Web3Forms enquiry form
+templates/site.config.json        public site-wide values
+templates/pages/<slug>.html       front matter plus body, one per page
+tools/build-pages.py              renders sources into <slug>/index.html
+```
 
-Future pages should be built by replacing content, images, SEO data and local references only.
+### Make a page
 
-## Page Creation Workflow
+1. Copy `templates/pages/_example-suburb.html` to `templates/pages/<slug>.html`.
+2. Set the front matter and write the body sections.
+3. Run `python tools/build-pages.py <slug>`.
 
-1. Duplicate `templates/reusable-page-template.html`.
-2. Create a dedicated folder for the page slug, for example `driving-school-moorebank/`.
-3. Save the copied file as `driving-school-moorebank/index.html`.
-4. Replace the `{{TOKENS}}`.
-5. Swap in suburb-specific copy, routes, images, packages, FAQs and test centres.
-6. Keep the class names, section ids and `../js/main.js` include.
-7. Remove a whole optional section only if the page genuinely does not need it.
+The output lands at `<slug>/index.html`, then `tools/inline-css.py` runs and
+swaps the stylesheet link for the inlined CSS block. Add `--no-inline` to skip
+that, `--check` to see what would change without writing.
 
-## Template Structure
+A source file starting with `_` is a draft. Drafts build only when you name
+them, so an unfinished page never ships by accident.
 
-The shell is already laid out in the recommended order:
+### Page source format
 
-1. Hero
-2. Proof strip
-3. About or local context split
-4. Services grid
-5. Coverage or route context split
-6. Packages or offers
-7. FAQ
-8. Final CTA
-9. Shared footer
+```
+---
+slug: driving-lessons-moorebank
+title: Driving Lessons in Moorebank | Driving School Liverpool Centre
+description: One sentence for search results.
+nav: Lessons|#lessons, Packages|#packages, Enquiry|#enquiry-form
+---
 
-## Required Token Groups
+<!-- BLOCK: json_ld -->
+  <script type="application/ld+json"> ... </script>
+<!-- ENDBLOCK -->
 
-Replace these on every page:
+    <section class="section" id="lessons">
+      ...
+    </section>
 
-- SEO: `{{PAGE_TITLE}}`, `{{META_DESCRIPTION}}`, `{{CANONICAL_URL}}`, `{{OG_TITLE}}`, `{{OG_DESCRIPTION}}`, `{{OG_IMAGE}}`, `{{JSON_LD_BLOCK}}`
-- Brand and contact: `{{BUSINESS_NAME}}`, `{{PRIMARY_PHONE_DISPLAY}}`, `{{PHONE_CTA_HREF}}`, `{{PHONE_CTA_LABEL}}`
-- Header CTA: `{{HEADER_LINK_HREF}}`, `{{HEADER_LINK_LABEL}}`, `{{HEADER_BUTTON_HREF}}`, `{{HEADER_BUTTON_LABEL}}`
-- Hero: `{{HERO_*}}`, `{{PRIMARY_CTA_*}}`, `{{PHONE_CTA_*}}`, `{{SECONDARY_CTA_*}}`
-- Proof strip: `{{STAT_*}}`
-- About block: `{{ABOUT_*}}`
-- Services grid: `{{SERVICES_*}}`, `{{SERVICE_ONE_*}}` through `{{SERVICE_SIX_*}}`
-- Coverage block: `{{COVERAGE_*}}`, `{{ROUTE_CARD_ONE_*}}` through `{{ROUTE_CARD_FOUR_*}}`
-- Packages: `{{PACKAGES_*}}`, `{{PACKAGE_ONE_*}}` through `{{PACKAGE_FOUR_*}}`
-- FAQ: `{{FAQ_*}}`
-- Final CTA: `{{FINAL_CTA_*}}`
-- Footer local details: `{{FOOTER_CONTACT_*}}`, `{{FOOTER_SUPPORT_*}}`, `{{TEST_CENTRE_ONE}}` through `{{TEST_CENTRE_FOUR}}`
+{{> partials/pricing.html }}
+{{> partials/enquiry-form.html }}
+```
 
-## Reusable Section System
+- Front matter is `key: value`, one per line. Every key becomes a `{{ token }}`.
+- `nav` is `Label|href` pairs, comma separated. The header renders them.
+- A `BLOCK` captures multi-line values such as structured data.
+- Everything outside the blocks is the page body, dropped into `<main>`.
+- `{{> partials/name.html }}` on its own line pulls in a shared component.
+- Values not set in front matter fall back to `templates/site.config.json`.
 
-The page template relies on the shared CSS already in [css/main.css](/C:/Users/digit/OneDrive/Documents/GitHub/drivingschoolliverpoolsydney/css/main.css):
+The build fails loudly on an unknown token or a missing include rather than
+shipping a page with `{{ placeholders }}` in it.
 
-- `page-hero`
-- `page-hero__layout`
-- `page-shell-grid`
-- `page-shell-grid--reverse`
-- `page-shell-points`
-- `stat-strip`
-- `topic-grid`
-- `route-grid`
-- `pricing-grid`
-- `faq-layout`
-- `final-cta__panel`
-- `site-footer`
+### Where to make a change
 
-These classes are the reusable design system. Do not fork them per page unless the entire site design changes.
+| Change | Edit | Then run |
+|---|---|---|
+| Header, footer, form or pricing table | `templates/partials/` | `python tools/build-pages.py` |
+| Phone, email, business name, form key | `templates/site.config.json` | `python tools/build-pages.py` |
+| Page copy | `templates/pages/<slug>.html` | `python tools/build-pages.py <slug>` |
+| Colours, spacing, components | `css/main.css` | `python tools/inline-css.py` |
 
-## Rules For Future Pages
+`css/main.css` stays the single source of truth for styling. Never hand-edit
+the `INLINE-CSS:START ... END` block inside a page: it is regenerated and your
+edit will be lost.
 
-- Keep `#faq` and the `faq-item > button + .faq-panel` structure or the accordion JS will break.
-- Keep `#final-cta` if hero and header buttons need a consistent close target.
-- Keep the site font stack and site palette from `css/main.css`.
-- Reuse existing button classes instead of inventing one-off button styles.
-- Duplicate or remove repeated cards only inside existing grids, not by redesigning the section shell.
-- Change page topic, suburb, service details, route details, test centres, image choices and SEO only.
+### Secrets
 
-## Optional Sections
+`templates/site.config.json` is copied verbatim into shipped HTML, so it holds
+public values only: business name, phone, email, and the Web3Forms access key,
+which is a publishable form identifier. The build refuses to run if a config
+key reads like a credential, for example anything named `secret`, `password`,
+`private_key` or `access_token`. Anything genuinely secret belongs in a server
+or Worker environment variable, never in this repo.
 
-The template is intentionally modular. You can keep or remove:
+### Scope
 
-- proof strip
-- coverage split
-- packages section
+The build system covers new pages. The 19 existing pages were hand-built, each
+with its own navigation, structured data and in some cases its own stylesheet,
+so they are not generated from `base.html`. Converting one means writing its
+source file and checking the rendered output against the current page. Do that
+page by page rather than in bulk.
 
-You can also insert these without redesigning the overall shell:
+## 2. Copy-and-edit template (legacy)
 
-- video testimonials
-- accreditation section
-- map block
-- suburb card grid
-- review cards
-- service-area list
-
-When adding extra content, prefer existing classes in `css/main.css` before creating new patterns.
+`reusable-page-template.html` is the older single-file shell with `{{TOKENS}}`
+replaced by hand. `page-build-checklist.md` lists what to change. It still
+works, but it copies the header and footer into every new page, which is the
+duplication the build system removes. Prefer the build system.
