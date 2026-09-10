@@ -53,6 +53,20 @@ SECRET_KEY = re.compile(r'secret|password|passwd|private[_-]?key|\bapi[_-]?key\b
 OPTIONAL = ('json_ld', 'page_scripts', 'packages_heading', 'packages_lead')
 
 
+RE_INLINED_CSS = re.compile(
+    r'<!-- INLINE-CSS:START.*?<!-- INLINE-CSS:END -->\n?'
+    r'|[ \t]*<link rel="stylesheet" href="(?:/|(?:\.\./)*)css/main\.css(?:\?[^"]*)?">\n?',
+    re.S)
+
+
+def without_css(html):
+    """Compare renders ignoring the stylesheet line and the inlined CSS block.
+
+    A built page has its CSS inlined by tools/inline-css.py afterwards, so a raw
+    comparison would always report a difference."""
+    return RE_INLINED_CSS.sub('', html)
+
+
 def die(msg):
     sys.exit('build-pages: ' + msg)
 
@@ -159,7 +173,8 @@ def build_one(src, cfg, check):
 
     if check:
         old = read(out) if os.path.exists(out) else ''
-        print('%-46s %s' % (rel, 'unchanged' if old == html else 'would change'))
+        same = without_css(old) == without_css(html)
+        print('%-46s %s' % (rel, 'unchanged' if same else 'would change'))
         return False
 
     if not os.path.isdir(os.path.dirname(out)):

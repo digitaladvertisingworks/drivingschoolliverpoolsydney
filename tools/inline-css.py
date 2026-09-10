@@ -80,7 +80,7 @@ def main():
         if START in s:
             s = re.sub(re.escape(START) + r'.*?' + re.escape(END), lambda m: block, s, flags=re.S)
         else:
-            link = re.search(r'[ \t]*<link rel="stylesheet" href="(?:\.\./)*css/main\.css(?:\?[^"]*)?">\n?', s)
+            link = re.search(r'[ \t]*<link rel="stylesheet" href="(?:/|(?:\.\./)*)css/main\.css(?:\?[^"]*)?">\n?', s)
             if not link:
                 skipped += 1
                 continue
