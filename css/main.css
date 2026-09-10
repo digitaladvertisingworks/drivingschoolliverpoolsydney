@@ -2220,3 +2220,101 @@ button {
     min-height: 22rem;
   }
 }
+
+/* Mobile offer bars: thin promo strip above the header, sticky CTA at the bottom */
+.promo-bar,
+.sticky-cta {
+  display: none;
+}
+
+@media (max-width: 959px) {
+  /* clearance so the fixed bar never covers the last of the footer */
+  .site-footer {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  }
+
+  .promo-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1rem;
+    background: var(--color-dark);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .promo-bar strong {
+    color: var(--color-primary);
+    font-weight: 800;
+  }
+
+  .promo-bar__cta {
+    font-weight: 800;
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .sticky-cta {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 95;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+    background: rgba(20, 23, 27, 0.97);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(12px);
+    color: #ffffff;
+  }
+
+  .sticky-cta__text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .sticky-cta__text strong {
+    display: block;
+    color: var(--color-primary);
+    font-size: 1.05rem;
+    font-weight: 800;
+  }
+
+  .sticky-cta__btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.85rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    background: var(--color-primary);
+    color: var(--color-dark);
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .sticky-cta:active .sticky-cta__btn {
+    background: var(--color-primary-deep);
+  }
+}
+
+@media (max-width: 359px) {
+  .sticky-cta__text {
+    font-size: 0.85rem;
+  }
+
+  .sticky-cta__btn {
+    padding: 0.7rem 1.1rem;
+  }
+}

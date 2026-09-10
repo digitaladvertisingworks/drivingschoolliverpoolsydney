@@ -30,6 +30,7 @@ RE_COMMENT = re.compile(r'/\*.*?\*/', re.S)
 RE_WS = re.compile(r'\s+')
 RE_PUNCT = re.compile(r'\s*([{}:;,>~+])\s*')
 RE_SEMI = re.compile(r';}')
+CALC_MASK = 'CALCMASK%dENDCALCMASK'
 RE_PARENT_URL = re.compile(r'url\((\s*["\']?)\.\./')
 
 
@@ -44,13 +45,49 @@ def rebase_urls(css):
     return RE_PARENT_URL.sub(lambda m: 'url(' + m.group(1) + '/', css)
 
 
+def mask_calc(css):
+    """Replace every calc(...) span with a placeholder.
+
+    Inside calc(), the + and - operators REQUIRE surrounding whitespace, but
+    the punctuation pass strips spaces around + because it is also a sibling
+    combinator in selectors. Masking calc spans keeps their spacing intact.
+    """
+    out = []
+    spans = []
+    i = 0
+    while True:
+        j = css.find('calc(', i)
+        if j < 0:
+            out.append(css[i:])
+            break
+        out.append(css[i:j])
+        depth = 0
+        k = j + 4
+        while k < len(css):
+            if css[k] == '(':
+                depth += 1
+            elif css[k] == ')':
+                depth -= 1
+                if depth == 0:
+                    k += 1
+                    break
+            k += 1
+        out.append(CALC_MASK % len(spans))
+        spans.append(RE_WS.sub(' ', css[j:k]))
+        i = k
+    return ''.join(out), spans
+
+
 def minify(css):
     """Conservative minification: strip comments and collapse whitespace."""
     css = rebase_urls(css)
     css = RE_COMMENT.sub('', css)
+    css, calcs = mask_calc(css)
     css = RE_WS.sub(' ', css)
     css = RE_PUNCT.sub(lambda m: m.group(1), css)
     css = RE_SEMI.sub('}', css)
+    for n, span in enumerate(calcs):
+        css = css.replace(CALC_MASK % n, span)
     return css.strip()
 
 
