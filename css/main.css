@@ -1160,9 +1160,14 @@ button {
 }
 
 .pricing-card {
-  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.75rem 1.4rem;
   position: relative;
   overflow: hidden;
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
 .pricing-card::before {
@@ -1174,14 +1179,26 @@ button {
   background: linear-gradient(90deg, var(--color-primary), rgba(255, 212, 0, 0.15));
 }
 
-.pricing-card--featured {
-  transform: translateY(-0.2rem);
+.pricing-card:not(.pricing-card--featured):hover {
+  transform: translateY(-3px);
+  border-color: var(--color-primary-deep);
   box-shadow: var(--shadow-soft);
 }
 
+.pricing-card--featured {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary), 0 26px 54px rgba(255, 212, 0, 0.22);
+}
+
+.pricing-card--featured .pricing-card__label {
+  background: var(--color-primary);
+  color: var(--color-dark);
+}
+
 .pricing-card__label {
+  align-self: center;
   display: inline-flex;
-  margin: 0 0 0.8rem;
+  margin: 0.35rem 0 0.9rem;
   padding: 0.35rem 0.65rem;
   border-radius: 999px;
   background: var(--color-primary-soft);
@@ -1194,16 +1211,134 @@ button {
 
 .pricing-card__price {
   display: block;
+  margin-bottom: 0.55rem;
   color: var(--color-dark);
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 2.8rem;
-  line-height: 0.95;
+  font-size: clamp(2.6rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1;
   text-transform: uppercase;
 }
 
+.pricing-card > p {
+  margin: 0 0 0.5rem;
+}
+
 .pricing-card ul {
-  margin: 1rem 0 0;
-  padding-left: 1.15rem;
+  margin: auto 0 0;
+  padding: 1rem 0 0;
+  list-style: none;
+  border-top: 1px solid var(--color-line);
+}
+
+.pricing-card li {
+  padding: 0.3rem 0;
+  font-size: var(--text-sm);
+}
+
+/* Contact enquiry form (Web3Forms) */
+.enquiry-form {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.enquiry-form .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem;
+}
+
+.enquiry-form .form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0;
+}
+
+.enquiry-form .form-field--wide {
+  grid-column: 1 / -1;
+}
+
+.enquiry-form label {
+  color: var(--color-ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.enquiry-form .form-optional {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.enquiry-form input,
+.enquiry-form select,
+.enquiry-form textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  font: inherit;
+  color: var(--color-ink);
+  background: #ffffff;
+  border: 1px solid rgba(23, 25, 29, 0.18);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.enquiry-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.enquiry-form input:focus-visible,
+.enquiry-form select:focus-visible,
+.enquiry-form textarea:focus-visible {
+  outline: none;
+  border-color: var(--color-primary-deep);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.enquiry-form .form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.enquiry-form .form-note {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.enquiry-form button[disabled] {
+  opacity: 0.65;
+  cursor: progress;
+}
+
+.enquiry-form .form-status {
+  margin: 1.1rem 0 0;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-soft);
+  color: var(--color-ink);
+  font-size: var(--text-sm);
+}
+
+.enquiry-form .form-status.is-error {
+  background: #fdecec;
+  color: #8c1d1d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-card,
+  .pricing-card:hover {
+    transform: none;
+    transition: none;
+  }
 }
 
 .video-section {
@@ -1965,6 +2100,10 @@ button {
 }
 
 @media (max-width: 759px) {
+  .enquiry-form .form-grid {
+    grid-template-columns: 1fr;
+  }
+
   .hero {
     background:
       linear-gradient(90deg, rgba(13, 15, 18, 0.88) 0%, rgba(20, 23, 27, 0.66) 38%, rgba(20, 23, 27, 0.16) 100%),
