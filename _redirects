@@ -108,3 +108,9 @@
 # 6. WordPress post slug → about-us (thematic match)
 # -----------------------------------------------------------------------------
 /liverpool-city-council-australia-driving-school/ /about-us/ 301
+
+# -----------------------------------------------------------------------------
+# 7. Renamed image assets — keep Google Images results alive
+# -----------------------------------------------------------------------------
+/img/learner-driver-lessons-liverpool-sydney-south-driving-school.jpg /img/driving-school-liverpool-center-p-plate-success.jpg 301
+/img/opt/learner-driver-lessons-liverpool-sydney-south-driving-school.webp /img/opt/driving-school-liverpool-center-p-plate-success.webp 301
