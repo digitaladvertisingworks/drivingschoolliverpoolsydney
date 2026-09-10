@@ -2318,3 +2318,111 @@ button {
     padding: 0.7rem 1.1rem;
   }
 }
+
+/* Contact hero carrying the enquiry form, so the form sits above the fold */
+.page-hero--form {
+  padding-top: calc(var(--space-16) + 0.5rem);
+  padding-bottom: var(--space-12);
+}
+
+.page-hero--form .page-hero__layout {
+  align-items: start;
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.page-hero--form h1 {
+  max-width: 18ch;
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+}
+
+.page-hero--form .page-hero__lead {
+  margin-top: var(--space-4);
+  font-size: 1rem;
+}
+
+.hero-form {
+  padding: clamp(1.25rem, 2.5vw, 1.9rem);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-form .eyebrow {
+  margin: 0;
+}
+
+.hero-form h2 {
+  margin: 0.35rem 0 1.1rem;
+  font-size: clamp(1.45rem, 2.2vw, 1.9rem);
+  line-height: 1.05;
+}
+
+/* the card supplies the surface, so the form inside it goes flat */
+.enquiry-form--hero {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.enquiry-form--hero .form-grid {
+  gap: 0.85rem;
+}
+
+@media (max-width: 959px) {
+  /* dissolve the copy block so the form can be ordered between the
+     heading and the supporting detail */
+  .page-hero--form .page-hero__content {
+    display: contents;
+  }
+
+  .page-hero--form {
+    padding-top: var(--space-10);
+  }
+
+  /* minmax(0,...) and min-width:0 stop the select's long option text from
+     forcing the track wider than the screen */
+  .page-hero--form .page-hero__layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.9rem;
+  }
+
+  .page-hero--form .page-hero__layout > * {
+    min-width: 0;
+  }
+
+  .page-hero--form .page-hero__eyebrow {
+    order: 1;
+    margin-bottom: 0;
+  }
+
+  .page-hero--form h1 {
+    order: 2;
+    font-size: clamp(2rem, 7vw, 2.6rem);
+  }
+
+  .page-hero--form .hero-form {
+    order: 3;
+  }
+
+  .page-hero--form .page-hero__lead {
+    order: 4;
+    margin-top: 0;
+  }
+
+  .page-hero--form .hero__actions {
+    order: 5;
+  }
+
+  .page-hero--form .page-hero__meta {
+    order: 6;
+  }
+
+  .enquiry-form--hero .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
