@@ -25,6 +25,23 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://drivingschoolliverpool.sydney/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Driving Lessons Chipping Norton",
+            "item": "https://drivingschoolliverpool.sydney/driving-lessons-chipping-norton/"
+          }
+        ]
+      },
+      {
         "@type": "LocalBusiness",
         "@id": "https://drivingschoolliverpool.sydney/#business",
         "name": "Driving School Liverpool Center",
@@ -45,7 +62,15 @@
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
             "opens": "07:00",
             "closes": "19:00"
           }
@@ -55,24 +80,68 @@
       {
         "@type": "Service",
         "name": "Driving Lessons Chipping Norton",
-        "provider": { "@id": "https://drivingschoolliverpool.sydney/#business" },
+        "provider": {
+          "@id": "https://drivingschoolliverpool.sydney/#business"
+        },
         "serviceType": "Driving Lessons",
         "description": "One-on-one driving lessons in Chipping Norton and surrounding suburbs with a Transport for NSW accredited instructor. Beginner lessons, nervous driver coaching, test preparation, logbook hours and adult learner support with pick-up and drop-off.",
         "areaServed": [
-          { "@type": "City", "name": "Chipping Norton" },
-          { "@type": "City", "name": "Cecil Hills" },
-          { "@type": "City", "name": "Horningsea Park" },
-          { "@type": "City", "name": "Prestons" },
-          { "@type": "City", "name": "Austral" },
-          { "@type": "City", "name": "Leppington" },
-          { "@type": "City", "name": "Denham Court" },
-          { "@type": "City", "name": "Catherine Field" },
-          { "@type": "City", "name": "Oran Park" },
-          { "@type": "City", "name": "Gregory Hills" },
-          { "@type": "City", "name": "Harrington Park" },
-          { "@type": "City", "name": "Narellan" },
-          { "@type": "City", "name": "Liverpool" },
-          { "@type": "City", "name": "Casula" }
+          {
+            "@type": "City",
+            "name": "Chipping Norton"
+          },
+          {
+            "@type": "City",
+            "name": "Cecil Hills"
+          },
+          {
+            "@type": "City",
+            "name": "Horningsea Park"
+          },
+          {
+            "@type": "City",
+            "name": "Prestons"
+          },
+          {
+            "@type": "City",
+            "name": "Austral"
+          },
+          {
+            "@type": "City",
+            "name": "Leppington"
+          },
+          {
+            "@type": "City",
+            "name": "Denham Court"
+          },
+          {
+            "@type": "City",
+            "name": "Catherine Field"
+          },
+          {
+            "@type": "City",
+            "name": "Oran Park"
+          },
+          {
+            "@type": "City",
+            "name": "Gregory Hills"
+          },
+          {
+            "@type": "City",
+            "name": "Harrington Park"
+          },
+          {
+            "@type": "City",
+            "name": "Narellan"
+          },
+          {
+            "@type": "City",
+            "name": "Liverpool"
+          },
+          {
+            "@type": "City",
+            "name": "Casula"
+          }
         ],
         "offers": {
           "@type": "Offer",
@@ -762,8 +831,8 @@
           <li><a href="../contact-us/">Contact Us</a></li>
           <li><a href="../driving-instructors-liverpool/">Driving Instructors Liverpool</a></li>
           <li><a href="#packages">Lesson Pricing</a></li>
-          <li><a href="../index.html#reviews">Student Reviews</a></li>
-          <li><a href="../index.html#area">Service Areas</a></li>
+          <li><a href="/#reviews">Student Reviews</a></li>
+          <li><a href="/#area">Service Areas</a></li>
           <li><a href="../cancellation-policy/">Cancellation Policy</a></li>
           <li><a href="../terms-and-conditions/">Terms and Conditions</a></li>
           <li><a href="../australian-business-number-abn/">Australian Registered Business (ABN)</a></li>

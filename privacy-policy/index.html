@@ -23,74 +23,91 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../img/opt/favicon-32.png">
   <link rel="apple-touch-icon" href="../img/opt/apple-touch-icon.png">
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebPage",
-          "@id": "https://drivingschoolliverpool.sydney/privacy-policy/#page",
-          "url": "https://drivingschoolliverpool.sydney/privacy-policy/",
-          "name": "Privacy Policy | Driving School Liverpool Centre",
-          "about": {
-            "@id": "https://drivingschoolliverpool.sydney/privacy-policy/#business"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://drivingschoolliverpool.sydney/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Privacy Policy",
+            "item": "https://drivingschoolliverpool.sydney/privacy-policy/"
           }
-        },
-        {
-          "@type": "LocalBusiness",
-          "@id": "https://drivingschoolliverpool.sydney/privacy-policy/#business",
-          "name": "Driving School Liverpool Centre",
-          "url": "https://drivingschoolliverpool.sydney/privacy-policy/",
-          "image": "https://drivingschoolliverpool.sydney/img/t-santos-drives-hume-highway-liverpool.jpg",
-          "telephone": "+61-2-8776-1815",
-          "email": "info@drivingschoolliverpool.sydney",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Liverpool",
-            "addressRegion": "NSW",
-            "postalCode": "2170",
-            "addressCountry": "AU"
-          }
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "https://drivingschoolliverpool.sydney/privacy-policy/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "What personal information does Driving School Liverpool Centre collect?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The branch may collect contact details, booking details, website usage information and other personal information provided directly by the student or parent when making enquiries or using support features."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Why is personal information collected?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Personal information is collected to manage bookings, support lesson enquiries, improve the website and communicate with students and parents."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I ask to access my personal information?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. You can contact the Liverpool branch to request access to your personal information, subject to legal exceptions and reasonable security procedures."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How do I contact the business about privacy questions?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "You can call the Liverpool branch on (02) 8776 1815 or email info@drivingschoolliverpool.sydney if you have a privacy question."
-              }
-            }
-          ]
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://drivingschoolliverpool.sydney/privacy-policy/#page",
+        "url": "https://drivingschoolliverpool.sydney/privacy-policy/",
+        "name": "Privacy Policy | Driving School Liverpool Centre",
+        "about": {
+          "@id": "https://drivingschoolliverpool.sydney/privacy-policy/#business"
         }
-      ]
-    }
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://drivingschoolliverpool.sydney/privacy-policy/#business",
+        "name": "Driving School Liverpool Centre",
+        "url": "https://drivingschoolliverpool.sydney/privacy-policy/",
+        "image": "https://drivingschoolliverpool.sydney/img/t-santos-drives-hume-highway-liverpool.jpg",
+        "telephone": "+61-2-8776-1815",
+        "email": "info@drivingschoolliverpool.sydney",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Liverpool",
+          "addressRegion": "NSW",
+          "postalCode": "2170",
+          "addressCountry": "AU"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://drivingschoolliverpool.sydney/privacy-policy/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What personal information does Driving School Liverpool Centre collect?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The branch may collect contact details, booking details, website usage information and other personal information provided directly by the student or parent when making enquiries or using support features."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is personal information collected?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Personal information is collected to manage bookings, support lesson enquiries, improve the website and communicate with students and parents."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I ask to access my personal information?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You can contact the Liverpool branch to request access to your personal information, subject to legal exceptions and reasonable security procedures."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I contact the business about privacy questions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can call the Liverpool branch on (02) 8776 1815 or email info@drivingschoolliverpool.sydney if you have a privacy question."
+            }
+          }
+        ]
+      }
+    ]
+  }
   </script>
   <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/barlow-condensed-700-latin.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/barlow-400-latin.woff2">
@@ -414,8 +431,8 @@
           <li><a href="../contact-us/">Contact Us</a></li>
           <li><a href="../driving-instructors-liverpool/">Driving Instructors Liverpool</a></li>
           <li><a href="../beginner-driving-lessons-liverpool/">Beginner Lessons</a></li>
-          <li><a href="../index.html#reviews">Student Reviews</a></li>
-          <li><a href="../index.html#area">Service Areas</a></li>
+          <li><a href="/#reviews">Student Reviews</a></li>
+          <li><a href="/#area">Service Areas</a></li>
           <li><a href="../cancellation-policy/">Cancellation Policy</a></li>
           <li><a href="../terms-and-conditions/">Terms and Conditions</a></li>
           <li><a href="../australian-business-number-abn/">Australian Registered Business (ABN)</a></li>
@@ -452,9 +469,9 @@
         <h3>Test Centres</h3>
         <ul class="footer-links">
           <li><a href="../driving-lessons-edmondson-park/">Edmondson Park Service NSW Driver Testing Centre</a></li>
-          <li><a href="../index.html#area">Liverpool Service NSW Driver Testing Centre</a></li>
-          <li><a href="../index.html#area">Macarthur Service NSW Driver Testing Centre</a></li>
-          <li><a href="../index.html#area">Macquarie Fields Service NSW Driver Testing Centre</a></li>
+          <li><a href="/#area">Liverpool Service NSW Driver Testing Centre</a></li>
+          <li><a href="/#area">Macarthur Service NSW Driver Testing Centre</a></li>
+          <li><a href="/#area">Macquarie Fields Service NSW Driver Testing Centre</a></li>
         </ul>
       </div>
       <div class="footer-column">

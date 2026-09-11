@@ -27,6 +27,23 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://drivingschoolliverpool.sydney/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About Us",
+            "item": "https://drivingschoolliverpool.sydney/about-us/"
+          }
+        ]
+      },
+      {
         "@type": "AboutPage",
         "@id": "https://drivingschoolliverpool.sydney/about-us/#page",
         "url": "https://drivingschoolliverpool.sydney/about-us/",
@@ -55,7 +72,15 @@
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
             "opens": "07:00",
             "closes": "19:00"
           }
@@ -396,7 +421,7 @@
 
         <div class="section-actions section-actions--center">
           <a class="btn btn--primary" href="/contact-us/">Book a lesson</a>
-          <a class="btn btn--ghost-surface" href="../index.html#lessons">View all lesson packages</a>
+          <a class="btn btn--ghost-surface" href="/#lessons">View all lesson packages</a>
         </div>
       </div>
     </section>

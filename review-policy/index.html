@@ -23,74 +23,91 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../img/opt/favicon-32.png">
   <link rel="apple-touch-icon" href="../img/opt/apple-touch-icon.png">
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebPage",
-          "@id": "https://drivingschoolliverpool.sydney/review-policy/#page",
-          "url": "https://drivingschoolliverpool.sydney/review-policy/",
-          "name": "Review Policy | Driving School Liverpool Centre",
-          "about": {
-            "@id": "https://drivingschoolliverpool.sydney/review-policy/#business"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://drivingschoolliverpool.sydney/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Review Policy",
+            "item": "https://drivingschoolliverpool.sydney/review-policy/"
           }
-        },
-        {
-          "@type": "LocalBusiness",
-          "@id": "https://drivingschoolliverpool.sydney/review-policy/#business",
-          "name": "Driving School Liverpool Centre",
-          "url": "https://drivingschoolliverpool.sydney/review-policy/",
-          "image": "https://drivingschoolliverpool.sydney/img/t-santos-drives-hume-highway-liverpool.jpg",
-          "telephone": "+61-2-8776-1815",
-          "email": "info@drivingschoolliverpool.sydney",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Liverpool",
-            "addressRegion": "NSW",
-            "postalCode": "2170",
-            "addressCountry": "AU"
-          }
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "https://drivingschoolliverpool.sydney/review-policy/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Can reviews be influenced by discounts or rewards?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. Reviews should not be influenced by discounts, refunds, gifts, threats or any other pressure designed to change the feedback."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What kind of review is considered relevant?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A relevant review should describe the learner's real lesson experience in a way that helps other learners and parents make an informed decision."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can old reviews be removed?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Reviews submitted more than 6 months after the learner's last use of the service may be removed if they no longer reflect a current or direct booking experience."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How do I ask for a review to be removed or amended?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Contact Driving School Liverpool Centre by phone or email and explain which review is involved, why it may breach the policy, or what change you are requesting."
-              }
-            }
-          ]
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://drivingschoolliverpool.sydney/review-policy/#page",
+        "url": "https://drivingschoolliverpool.sydney/review-policy/",
+        "name": "Review Policy | Driving School Liverpool Centre",
+        "about": {
+          "@id": "https://drivingschoolliverpool.sydney/review-policy/#business"
         }
-      ]
-    }
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://drivingschoolliverpool.sydney/review-policy/#business",
+        "name": "Driving School Liverpool Centre",
+        "url": "https://drivingschoolliverpool.sydney/review-policy/",
+        "image": "https://drivingschoolliverpool.sydney/img/t-santos-drives-hume-highway-liverpool.jpg",
+        "telephone": "+61-2-8776-1815",
+        "email": "info@drivingschoolliverpool.sydney",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Liverpool",
+          "addressRegion": "NSW",
+          "postalCode": "2170",
+          "addressCountry": "AU"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://drivingschoolliverpool.sydney/review-policy/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can reviews be influenced by discounts or rewards?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Reviews should not be influenced by discounts, refunds, gifts, threats or any other pressure designed to change the feedback."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What kind of review is considered relevant?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A relevant review should describe the learner's real lesson experience in a way that helps other learners and parents make an informed decision."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can old reviews be removed?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Reviews submitted more than 6 months after the learner's last use of the service may be removed if they no longer reflect a current or direct booking experience."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I ask for a review to be removed or amended?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Contact Driving School Liverpool Centre by phone or email and explain which review is involved, why it may breach the policy, or what change you are requesting."
+            }
+          }
+        ]
+      }
+    ]
+  }
   </script>
   <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/barlow-condensed-700-latin.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/barlow-400-latin.woff2">
@@ -442,8 +459,8 @@
           <li><a href="../contact-us/">Contact Us</a></li>
           <li><a href="../driving-instructors-liverpool/">Driving Instructors Liverpool</a></li>
           <li><a href="../beginner-driving-lessons-liverpool/">Beginner Lessons</a></li>
-          <li><a href="../index.html#reviews">Student Reviews</a></li>
-          <li><a href="../index.html#area">Service Areas</a></li>
+          <li><a href="/#reviews">Student Reviews</a></li>
+          <li><a href="/#area">Service Areas</a></li>
           <li><a href="../cancellation-policy/">Cancellation Policy</a></li>
           <li><a href="../terms-and-conditions/">Terms and Conditions</a></li>
           <li><a href="../australian-business-number-abn/">Australian Registered Business (ABN)</a></li>
@@ -485,9 +502,9 @@
         <h3>Test Centres</h3>
         <ul class="footer-links">
           <li><a href="../driving-lessons-edmondson-park/">Edmondson Park Service NSW Driver Testing Centre</a></li>
-          <li><a href="../index.html#area">Liverpool Service NSW Driver Testing Centre</a></li>
-          <li><a href="../index.html#area">Macarthur Service NSW Driver Testing Centre</a></li>
-          <li><a href="../index.html#area">Macquarie Fields Service NSW Driver Testing Centre</a></li>
+          <li><a href="/#area">Liverpool Service NSW Driver Testing Centre</a></li>
+          <li><a href="/#area">Macarthur Service NSW Driver Testing Centre</a></li>
+          <li><a href="/#area">Macquarie Fields Service NSW Driver Testing Centre</a></li>
         </ul>
       </div>
       <div class="footer-column">

@@ -27,6 +27,23 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://drivingschoolliverpool.sydney/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Our Services",
+            "item": "https://drivingschoolliverpool.sydney/our-services/"
+          }
+        ]
+      },
+      {
         "@type": "WebPage",
         "@id": "https://drivingschoolliverpool.sydney/our-services/#page",
         "url": "https://drivingschoolliverpool.sydney/our-services/",
@@ -55,7 +72,15 @@
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
             "opens": "07:00",
             "closes": "19:00"
           }
@@ -72,7 +97,9 @@
         "@id": "https://drivingschoolliverpool.sydney/our-services/#beginner-lessons",
         "name": "Beginner Driving Lessons Liverpool",
         "description": "First-time learner sessions starting with steering control, mirror checks, smooth braking, road positioning and quiet Liverpool residential practice before any busier traffic is introduced.",
-        "provider": { "@id": "https://drivingschoolliverpool.sydney/#business" },
+        "provider": {
+          "@id": "https://drivingschoolliverpool.sydney/#business"
+        },
         "areaServed": "Liverpool NSW",
         "serviceType": "Beginner Driving Lessons"
       },
@@ -81,7 +108,9 @@
         "@id": "https://drivingschoolliverpool.sydney/our-services/#automatic-lessons",
         "name": "Automatic Driving Lessons Liverpool",
         "description": "Automatic lessons remove manual gear-change pressure so students focus entirely on observation, hazard perception, roundabout timing and decision-making. Ideal for beginners, nervous learners and adult returners.",
-        "provider": { "@id": "https://drivingschoolliverpool.sydney/#business" },
+        "provider": {
+          "@id": "https://drivingschoolliverpool.sydney/#business"
+        },
         "url": "https://drivingschoolliverpool.sydney/automatic-driving-lessons/",
         "areaServed": "Liverpool NSW",
         "serviceType": "Automatic Driving Lessons"
@@ -91,7 +120,9 @@
         "@id": "https://drivingschoolliverpool.sydney/our-services/#test-preparation",
         "name": "Driving Test Preparation Liverpool",
         "description": "Pre-test lessons focusing on Liverpool Service NSW test routes on Elizabeth Drive, Newbridge Road roundabouts, Orange Grove Road circuits, school zones, observation checkpoints and test-day control.",
-        "provider": { "@id": "https://drivingschoolliverpool.sydney/#business" },
+        "provider": {
+          "@id": "https://drivingschoolliverpool.sydney/#business"
+        },
         "areaServed": "Liverpool NSW",
         "serviceType": "Driving Test Preparation"
       },
@@ -100,7 +131,9 @@
         "@id": "https://drivingschoolliverpool.sydney/our-services/#logbook-hours",
         "name": "Logbook Hours Liverpool",
         "description": "Professional lesson hours each counting toward the NSW 120-hour logbook requirement. Structured practice across Liverpool, Casula, Moorebank and surrounding suburbs.",
-        "provider": { "@id": "https://drivingschoolliverpool.sydney/#business" },
+        "provider": {
+          "@id": "https://drivingschoolliverpool.sydney/#business"
+        },
         "areaServed": "Liverpool NSW",
         "serviceType": "Logbook Hours"
       },
@@ -109,7 +142,9 @@
         "@id": "https://drivingschoolliverpool.sydney/our-services/#refresher-lessons",
         "name": "Refresher Driving Lessons Liverpool",
         "description": "Adult returner and international licence holder lessons adapting to NSW road rules, local Liverpool traffic, school zones and Service NSW driving test routines.",
-        "provider": { "@id": "https://drivingschoolliverpool.sydney/#business" },
+        "provider": {
+          "@id": "https://drivingschoolliverpool.sydney/#business"
+        },
         "areaServed": "Liverpool NSW",
         "serviceType": "Refresher Driving Lessons"
       },
@@ -118,7 +153,9 @@
         "@id": "https://drivingschoolliverpool.sydney/our-services/#nervous-driver",
         "name": "Nervous Driver Lessons Liverpool",
         "description": "Calm, low-pressure coaching for anxious learners. Quiet local streets, repetition on key manoeuvres and gentle confidence building before progressing to busier Liverpool traffic.",
-        "provider": { "@id": "https://drivingschoolliverpool.sydney/#business" },
+        "provider": {
+          "@id": "https://drivingschoolliverpool.sydney/#business"
+        },
         "areaServed": "Liverpool NSW",
         "serviceType": "Nervous Driver Coaching"
       },

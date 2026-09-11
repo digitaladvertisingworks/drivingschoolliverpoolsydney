@@ -23,74 +23,91 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../img/opt/favicon-32.png">
   <link rel="apple-touch-icon" href="../img/opt/apple-touch-icon.png">
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebPage",
-          "@id": "https://drivingschoolliverpool.sydney/refund-policy/#page",
-          "url": "https://drivingschoolliverpool.sydney/refund-policy/",
-          "name": "Refund Policy | Driving School Liverpool Centre",
-          "about": {
-            "@id": "https://drivingschoolliverpool.sydney/refund-policy/#business"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://drivingschoolliverpool.sydney/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Refund Policy",
+            "item": "https://drivingschoolliverpool.sydney/refund-policy/"
           }
-        },
-        {
-          "@type": "LocalBusiness",
-          "@id": "https://drivingschoolliverpool.sydney/refund-policy/#business",
-          "name": "Driving School Liverpool Centre",
-          "url": "https://drivingschoolliverpool.sydney/refund-policy/",
-          "image": "https://drivingschoolliverpool.sydney/img/t-santos-drives-hume-highway-liverpool.jpg",
-          "telephone": "+61-2-8776-1815",
-          "email": "info@drivingschoolliverpool.sydney",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Liverpool",
-            "addressRegion": "NSW",
-            "postalCode": "2170",
-            "addressCountry": "AU"
-          }
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "https://drivingschoolliverpool.sydney/refund-policy/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Is there a cooling-off period for purchases?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. The repurposed policy uses a 48 hour cooling-off period where no services have been booked and the refund request is made within 48 hours of the original transaction."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What are some examples of refund eligibility?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Examples can include duplicate payments, no available instructor servicing the location, no instructor availability in the next four weeks, unused remaining lesson credits after substantial completed bookings, instructor non-arrival or instructor cancellation."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What are some examples of non-eligibility?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Examples can include change of mind, expired or zero wallet value, user booking errors, late cancellation charges, active payment disputes and non-refundable processing fees."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How long does an approved refund usually take?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "If a refund is approved, it is generally expected to return to the original payment method within 5 to 10 business days, depending on the bank or payment provider."
-              }
-            }
-          ]
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://drivingschoolliverpool.sydney/refund-policy/#page",
+        "url": "https://drivingschoolliverpool.sydney/refund-policy/",
+        "name": "Refund Policy | Driving School Liverpool Centre",
+        "about": {
+          "@id": "https://drivingschoolliverpool.sydney/refund-policy/#business"
         }
-      ]
-    }
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://drivingschoolliverpool.sydney/refund-policy/#business",
+        "name": "Driving School Liverpool Centre",
+        "url": "https://drivingschoolliverpool.sydney/refund-policy/",
+        "image": "https://drivingschoolliverpool.sydney/img/t-santos-drives-hume-highway-liverpool.jpg",
+        "telephone": "+61-2-8776-1815",
+        "email": "info@drivingschoolliverpool.sydney",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Liverpool",
+          "addressRegion": "NSW",
+          "postalCode": "2170",
+          "addressCountry": "AU"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://drivingschoolliverpool.sydney/refund-policy/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is there a cooling-off period for purchases?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The repurposed policy uses a 48 hour cooling-off period where no services have been booked and the refund request is made within 48 hours of the original transaction."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are some examples of refund eligibility?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Examples can include duplicate payments, no available instructor servicing the location, no instructor availability in the next four weeks, unused remaining lesson credits after substantial completed bookings, instructor non-arrival or instructor cancellation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are some examples of non-eligibility?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Examples can include change of mind, expired or zero wallet value, user booking errors, late cancellation charges, active payment disputes and non-refundable processing fees."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does an approved refund usually take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If a refund is approved, it is generally expected to return to the original payment method within 5 to 10 business days, depending on the bank or payment provider."
+            }
+          }
+        ]
+      }
+    ]
+  }
   </script>
   <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/barlow-condensed-700-latin.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/barlow-400-latin.woff2">
@@ -464,8 +481,8 @@
           <li><a href="../contact-us/">Contact Us</a></li>
           <li><a href="../driving-instructors-liverpool/">Driving Instructors Liverpool</a></li>
           <li><a href="../beginner-driving-lessons-liverpool/">Beginner Lessons</a></li>
-          <li><a href="../index.html#reviews">Student Reviews</a></li>
-          <li><a href="../index.html#area">Service Areas</a></li>
+          <li><a href="/#reviews">Student Reviews</a></li>
+          <li><a href="/#area">Service Areas</a></li>
           <li><a href="../cancellation-policy/">Cancellation Policy</a></li>
           <li><a href="../terms-and-conditions/">Terms and Conditions</a></li>
           <li><a href="../australian-business-number-abn/">Australian Registered Business (ABN)</a></li>
@@ -506,9 +523,9 @@
         <h3>Test Centres</h3>
         <ul class="footer-links">
           <li><a href="../driving-lessons-edmondson-park/">Edmondson Park Service NSW Driver Testing Centre</a></li>
-          <li><a href="../index.html#area">Liverpool Service NSW Driver Testing Centre</a></li>
-          <li><a href="../index.html#area">Macarthur Service NSW Driver Testing Centre</a></li>
-          <li><a href="../index.html#area">Macquarie Fields Service NSW Driver Testing Centre</a></li>
+          <li><a href="/#area">Liverpool Service NSW Driver Testing Centre</a></li>
+          <li><a href="/#area">Macarthur Service NSW Driver Testing Centre</a></li>
+          <li><a href="/#area">Macquarie Fields Service NSW Driver Testing Centre</a></li>
         </ul>
       </div>
       <div class="footer-column">
