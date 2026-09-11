@@ -78,6 +78,11 @@ RE_FORM_ANCHOR = re.compile(r'#[a-z0-9-]*form\b')
 SLUGS_BUILT = set()
 
 
+def SLUG_INDEX(slug):
+    """Stable small integer per page, used to vary anchors and neighbours."""
+    return sum(ord(c) for c in slug)
+
+
 def die(msg):
     sys.exit('import-pages: ' + msg)
 
@@ -365,6 +370,67 @@ def render_elfsight(sec):
     return ''
 
 
+# Anchors rotate so a suburb is not described the same way by every page
+# that links to it. Index by the linking page, not the target, so each
+# source contributes a different phrasing to its neighbours.
+NEARBY_ANCHORS = [
+    'driving lessons in %s',
+    'learning to drive in %s',
+    'driving instructors covering %s',
+    'lessons on %s roads',
+    'book a %s driving lesson',
+]
+NEARBY_MAX = 4
+
+
+def suburb_pages(hub):
+    """The suburbs that actually have a page here, in hub order, by region."""
+    out = []
+    for group in hub:
+        for sub in group['suburbs']:
+            slug = sub['href'].strip('/')
+            if os.path.exists(os.path.join(ROOT, slug, 'index.html')) \
+                    or slug in SLUGS_BUILT:
+                out.append((group['region'], slug, sub['title'], sub['text']))
+    return out
+
+
+def render_nearby_suburbs(hub, own_slug, region=None, index=0):
+    """A short list of neighbouring suburb pages, not the whole directory.
+
+    The full 48-suburb directory belongs on the service-areas hub. Repeating
+    it on every page spent each page's outbound equity on the entire set and
+    pushed one identical bare-name anchor at each target dozens of times.
+    """
+    entries = suburb_pages(hub)
+    same = [x for x in entries if x[1] != own_slug and (region is None or x[0] == region)]
+    if len(same) < NEARBY_MAX:
+        same = [x for x in entries if x[1] != own_slug]
+    if not same:
+        return ''
+    # rotate the window so different pages surface different neighbours
+    start = index % len(same)
+    picked = [same[(start + i) % len(same)] for i in range(min(NEARBY_MAX, len(same)))]
+    items = []
+    for n, (_, slug, title, text) in enumerate(picked):
+        anchor = NEARBY_ANCHORS[(index + n) % len(NEARBY_ANCHORS)] % title
+        items.append('          <article class="service-area-card">\n'
+                     '            <h3><a href="/%s/">%s</a></h3>\n'
+                     '            <p>%s</p>\n'
+                     '          </article>' % (slug, e(anchor), e(text)))
+    return ('    <section class="section" id="service-areas">\n'
+            '      <div class="container">\n'
+            '        <div class="section-heading section-heading--center">\n'
+            '          <p class="eyebrow">Nearby suburbs</p>\n'
+            '          <h2>Lessons in the suburbs next door</h2>\n'
+            '          <p>The same instructor teaches the areas below. '
+            '<a href="/driving-lessons-service-areas/">See every suburb we cover</a> '
+            'for the full list and pick-up detail.</p>\n'
+            '        </div>\n\n'
+            '        <div class="service-area-grid">\n%s\n        </div>\n'
+            '      </div>\n    </section>' % '\n'.join(items))
+
+
 def render_suburbs(sec, hub, own_slug=None):
     groups = []
     for group in hub:
@@ -413,23 +479,137 @@ RE_SERVICE_CARD = re.compile(
     r'[ \t]*<article class="service-area-card">.*?</article>\n', re.S)
 
 
-def render_services_hub(own_slug=None):
-    """The twelve lesson-type pages, as one grid on every generated page.
+# Lessons a page should point at, and what the link should say.
+#
+# Repeating all twelve lesson pages on all twenty-six pages did three bad
+# things: it pushed the same exact-match anchor at a target 26 times, it
+# spent every page's outbound equity on the full set rather than the
+# relevant few, and it flattened the site so no page looked more important
+# than any other. Each page now sends a handful of links, and the anchor
+# carries the entity rather than repeating a bare page title.
+SUBURB_LESSONS = [
+    ('/driving-test-preparation-practice-test/',
+     'Driving test preparation for %(suburb)s learners',
+     'A full practice test on the Service NSW route your booking uses, scored as you drive.'),
+    ('/driving-test-car-hire/',
+     'Test day car hire in %(suburb)s',
+     'Sit the assessment in the familiar dual-control automatic you took lessons in.'),
+    ('/automatic-driving-lessons-beginners/',
+     'First automatic lessons for %(suburb)s beginners',
+     'The starting point for a learner who has never driven, on quiet local streets.'),
+    ('/driver-hours-log-book/',
+     'Log book hours around %(suburb)s',
+     'Structured hours toward the NSW 120, counted triple for learners under 25.'),
+]
 
-    Suburb pages take the partial by reference so the build resolves it. A
-    service page cannot, because it has to drop its own card rather than link
-    to itself, so it inlines the same partial with that one card removed.
-    There is still only one list: this file.
-    """
-    if own_slug is None:
-        return '{{> partials/services-hub.html }}'
-    body = read_text(SERVICES_PARTIAL).rstrip('\n')
-    needle = 'href="/%s/"' % own_slug
-    kept = RE_SERVICE_CARD.sub(
-        lambda m: '' if needle in m.group(0) else m.group(0), body)
-    if kept == body:
-        die('services hub has no card for %s; add one to the partial' % own_slug)
-    return kept
+RELATED_LESSONS = {
+    'automatic-driving-lessons-beginners': [
+        ('/driver-hours-log-book/', 'turn early lessons into log book hours'),
+        ('/driving-lessons-for-nervous-drivers/', 'a slower start for an anxious learner'),
+        ('/driving-test-preparation-practice-test/', 'the practice test that comes later'),
+    ],
+    'driver-hours-log-book': [
+        ('/automatic-driving-lessons-beginners/', 'a first automatic lesson before the hours start'),
+        ('/driving-test-preparation-practice-test/', 'a practice test once the hours are done'),
+        ('/weekend-driving-lessons/', 'weekend hours for a full-time student'),
+    ],
+    'driving-lessons-for-nervous-drivers': [
+        ('/automatic-driving-lessons-beginners/', 'a first lesson in an automatic car'),
+        ('/parking-practice-lessons/', 'parking repeated until it stops being the worry'),
+        ('/driving-test-preparation-practice-test/', 'rehearsing the test before test day'),
+    ],
+    'driving-test-car-hire': [
+        ('/driving-test-preparation-practice-test/', 'the practice test before you book the real one'),
+        ('/parking-practice-lessons/', 'the reverse park the assessor will ask for'),
+        ('/refresher-driving-lessons/', 'a refresher if it has been a while'),
+    ],
+    'driving-test-preparation-practice-test': [
+        ('/driving-test-car-hire/', 'hiring the lesson car for test day'),
+        ('/parking-practice-lessons/', 'the manoeuvres that cost the most marks'),
+        ('/driver-hours-log-book/', 'the log book hours behind the booking'),
+    ],
+    'night-driving-lessons': [
+        ('/rainy-wet-weather-driving-lessons/', 'driving in rain and reduced visibility'),
+        ('/driving-lessons-for-nervous-drivers/', 'building confidence in harder conditions'),
+        ('/driver-hours-log-book/', 'night hours in the NSW log book'),
+    ],
+    'older-driver-assessment': [
+        ('/refresher-driving-lessons/', 'a refresher before the assessment'),
+        ('/driving-test-preparation-practice-test/', 'a full practice run of the drive'),
+        ('/parking-practice-lessons/', 'low-speed control and parking accuracy'),
+    ],
+    'overseas-licence-conversions': [
+        ('/driving-test-preparation-practice-test/', 'the NSW practical test rehearsed in full'),
+        ('/driving-test-car-hire/', 'a car for the NSW assessment'),
+        ('/refresher-driving-lessons/', 'rebuilding habits for local roads'),
+    ],
+    'parking-practice-lessons': [
+        ('/driving-test-preparation-practice-test/', 'where parking is scored on test day'),
+        ('/driving-test-car-hire/', 'practising in the car you will be tested in'),
+        ('/driving-lessons-for-nervous-drivers/', 'slower repetition for a nervous driver'),
+    ],
+    'rainy-wet-weather-driving-lessons': [
+        ('/night-driving-lessons/', 'driving after dark'),
+        ('/driving-test-preparation-practice-test/', 'a practice test in real conditions'),
+        ('/driving-lessons-for-nervous-drivers/', 'confidence when conditions are poor'),
+    ],
+    'refresher-driving-lessons': [
+        ('/overseas-licence-conversions/', 'converting an overseas licence'),
+        ('/older-driver-assessment/', 'preparing for an older driver assessment'),
+        ('/driving-test-car-hire/', 'car hire if you have no vehicle of your own'),
+    ],
+    'weekend-driving-lessons': [
+        ('/driver-hours-log-book/', 'weekend hours toward the NSW 120'),
+        ('/automatic-driving-lessons-beginners/', 'a first Saturday lesson'),
+        ('/driving-test-preparation-practice-test/', 'a Saturday practice test'),
+    ],
+}
+
+
+def render_suburb_lessons(suburb):
+    """Four lesson pages, named with the suburb so no two pages share an anchor."""
+    cards = []
+    for url, label, text in SUBURB_LESSONS:
+        cards.append('          <article class="topic-card">\n'
+                     '            <h3><a href="%s">%s</a></h3>\n'
+                     '            <p>%s</p>\n'
+                     '          </article>'
+                     % (url, e(label % {'suburb': suburb}), e(text)))
+    return ('    <section class="section section--alt" id="lesson-types">\n'
+            '      <div class="container">\n'
+            '        <div class="section-heading section-heading--center">\n'
+            '          <p class="eyebrow">Lessons available here</p>\n'
+            '          <h2>What you can book in %s</h2>\n'
+            '          <p>Every lesson below is taught on %s roads, with free '
+            'door-to-door pick-up. <a href="/our-services/">See all lesson types</a> '
+            'or <a href="/driving-lessons-service-areas/">browse every suburb we cover</a>.</p>\n'
+            '        </div>\n\n'
+            '        <div class="topic-grid">\n%s\n        </div>\n'
+            '      </div>\n    </section>'
+            % (e(suburb), e(suburb), '\n'.join(cards)))
+
+
+def render_related_lessons(slug):
+    """Three sibling lessons, each with an anchor written for this page."""
+    items = RELATED_LESSONS.get(slug)
+    if not items:
+        die('no related-lesson set for %s; add one to RELATED_LESSONS' % slug)
+    links = []
+    for url, label in items:
+        if url.strip('/') == slug:
+            die('%s is listed as related to itself' % slug)
+        links.append('          <li><a href="%s">%s</a></li>' % (url, e(label)))
+    return ('    <section class="section section--alt" id="lesson-types">\n'
+            '      <div class="container">\n'
+            '        <div class="section-heading section-heading--center">\n'
+            '          <p class="eyebrow">Where learners go next</p>\n'
+            '          <h2>Lessons that pair with this one</h2>\n'
+            '          <p>Learners booking this lesson usually look at these too. '
+            '<a href="/our-services/">See all lesson types</a> or '
+            '<a href="/driving-lessons-service-areas/">find your suburb</a>.</p>\n'
+            '        </div>\n\n'
+            '        <ul class="about-points">\n%s\n        </ul>\n'
+            '      </div>\n    </section>' % '\n'.join(links))
 
 
 def render_faq(items, title, lead):
@@ -693,8 +873,9 @@ def build_suburb(data, hub, plan):
             '      </div>\n    </section>'
             % (e(m['title']), e(m['lead']), attr(m['embed']), attr(m['title'])))
 
-    body.append(render_suburbs({}, hub, own_slug=slug))
-    body.append(render_services_hub())
+    body.append(render_nearby_suburbs(hub, slug, ident.get('branch'),
+                                      index=SLUG_INDEX(slug)))
+    body.append(render_suburb_lessons(ident['suburb']))
     body.append('{{> partials/pricing.html }}')
     body.append(render_faq(data['faq'],
                            'Driving lessons in %s: your questions' % ident['suburb'],
@@ -726,14 +907,15 @@ def build_service(data, hub, plan):
     for sec in data['sections']:
         kind = sec['type']
         if kind == 'suburbs':
-            body.append(render_suburbs(sec, hub))
+            body.append(render_nearby_suburbs(hub, slug,
+                                              index=SLUG_INDEX(slug)))
             continue
         if kind not in RENDERERS:
             die('no renderer for section type %r on %s' % (kind, slug))
         if kind == 'pricing':
             used_pricing = True
         body.append(RENDERERS[kind](sec))
-    body.append(render_services_hub(own_slug=slug))
+    body.append(render_related_lessons(slug))
     body.append(render_faq(data['faq'], data['faqTitle'], data.get('faqLead')))
     body.append(render_closing(data['closing']))
     body.append('{{> partials/enquiry-form.html }}')

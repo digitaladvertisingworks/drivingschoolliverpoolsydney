@@ -5,6 +5,7 @@
 # Internal content briefs and working documents
 briefs/
 templates/
+memory/
 canonical-audit-report.csv
 
 # Claude/agent skill folders - not part of the website
