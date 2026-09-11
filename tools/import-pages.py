@@ -408,6 +408,30 @@ RENDERERS = {
 }
 
 
+SERVICES_PARTIAL = os.path.join(ROOT, 'templates', 'partials', 'services-hub.html')
+RE_SERVICE_CARD = re.compile(
+    r'[ \t]*<article class="service-area-card">.*?</article>\n', re.S)
+
+
+def render_services_hub(own_slug=None):
+    """The twelve lesson-type pages, as one grid on every generated page.
+
+    Suburb pages take the partial by reference so the build resolves it. A
+    service page cannot, because it has to drop its own card rather than link
+    to itself, so it inlines the same partial with that one card removed.
+    There is still only one list: this file.
+    """
+    if own_slug is None:
+        return '{{> partials/services-hub.html }}'
+    body = read_text(SERVICES_PARTIAL).rstrip('\n')
+    needle = 'href="/%s/"' % own_slug
+    kept = RE_SERVICE_CARD.sub(
+        lambda m: '' if needle in m.group(0) else m.group(0), body)
+    if kept == body:
+        die('services hub has no card for %s; add one to the partial' % own_slug)
+    return kept
+
+
 def render_faq(items, title, lead):
     """Match the accordion markup js/main.js already drives on every page."""
     blocks = []
@@ -670,6 +694,7 @@ def build_suburb(data, hub, plan):
             % (e(m['title']), e(m['lead']), attr(m['embed']), attr(m['title'])))
 
     body.append(render_suburbs({}, hub, own_slug=slug))
+    body.append(render_services_hub())
     body.append('{{> partials/pricing.html }}')
     body.append(render_faq(data['faq'],
                            'Driving lessons in %s: your questions' % ident['suburb'],
@@ -708,6 +733,7 @@ def build_service(data, hub, plan):
         if kind == 'pricing':
             used_pricing = True
         body.append(RENDERERS[kind](sec))
+    body.append(render_services_hub(own_slug=slug))
     body.append(render_faq(data['faq'], data['faqTitle'], data.get('faqLead')))
     body.append(render_closing(data['closing']))
     body.append('{{> partials/enquiry-form.html }}')

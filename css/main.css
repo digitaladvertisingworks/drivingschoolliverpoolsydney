@@ -1911,8 +1911,9 @@ button {
 }
 
 .footer-grid {
-  grid-template-columns: 1.05fr 1fr 1fr 1fr;
-  gap: 2rem;
+  /* contact block, then five link columns */
+  grid-template-columns: 1.35fr repeat(5, minmax(0, 1fr));
+  gap: 2rem 1.5rem;
   align-items: start;
 }
 
@@ -2040,9 +2041,12 @@ button {
 
   .page-hero__layout,
   .page-shell-grid,
-  .page-shell-grid--reverse,
-  .footer-grid {
+  .page-shell-grid--reverse {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .quick-offers__grid {
@@ -2498,4 +2502,15 @@ button {
 
 .suburb-dropdown .service-area-grid {
   padding: 0 1.4rem 1.4rem;
+}
+
+/* Six footer columns need a smaller, tighter heading than four did */
+.footer-column h3 {
+  font-size: 1.15rem;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.footer-links a {
+  font-size: 0.95rem;
 }
