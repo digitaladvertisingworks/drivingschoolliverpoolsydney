@@ -2426,3 +2426,76 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+/* Alternating section shading, used by the generated service and suburb pages */
+.section--alt {
+  background: linear-gradient(180deg, #ffffff, var(--color-bg));
+}
+
+/* Supporting line under a card: the road, the distance, the level */
+.card-meta {
+  margin: 0.75rem 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.section-note {
+  margin: var(--space-6) auto 0;
+  max-width: 70ch;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-align: center;
+}
+
+/* The suburb hub: one long list of serviced suburbs, folded away by default
+   so it never buries the rest of the page. */
+.suburb-dropdown {
+  margin-top: var(--space-8);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.suburb-dropdown > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 1.4rem;
+  cursor: pointer;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  list-style: none;
+}
+
+.suburb-dropdown > summary::-webkit-details-marker {
+  display: none;
+}
+
+.suburb-dropdown > summary::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-right: 3px solid var(--color-primary-deep);
+  border-bottom: 3px solid var(--color-primary-deep);
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform var(--transition);
+}
+
+.suburb-dropdown[open] > summary::after {
+  transform: rotate(-135deg) translate(-2px, -2px);
+}
+
+.suburb-dropdown > summary:focus-visible {
+  outline: 3px solid var(--color-primary-deep);
+  outline-offset: 2px;
+}
+
+.suburb-dropdown .service-area-grid {
+  padding: 0 1.4rem 1.4rem;
+}
