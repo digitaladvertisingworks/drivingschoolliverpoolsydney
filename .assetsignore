@@ -22,3 +22,63 @@ taste-skill-main/
 .git/
 .gitignore
 node_modules/
+
+# Worker source - must never publish as a static file
+src/
+
+# Old "Sydney South Driving School" branding - superseded by
+# Driving School Liverpool Centre. Kept in the repo as source material,
+# but must not publish: the roof signs show the old name, the old
+# sydneysouth.net domain and the old 0422 364 654 number.
+img/opt/driving-lessons-service-nsw-liverpool-orange-grove.webp
+img/driving-lessons-service-nsw-liverpool-orange-grove.jpg
+img/opt/driving-test-preparation-service-nsw-liverpool.webp
+img/driving-test-preparation-service-nsw-liverpool.jpg
+img/opt/beginner-driving-lessons-liverpool-automatic-car.webp
+img/beginner-driving-lessons-liverpool-automatic-car.jpg
+img/opt/driving-lessons-cabramatta-automatic-car-training.webp
+img/driving-lessons-cabramatta-automatic-car-training.jpg
+img/opt/driving-lessons-cabramatta-learner-practice.webp
+img/driving-lessons-cabramatta-learner-practice.jpg
+img/opt/Driving-lessons-chipping-norton.webp
+img/Driving-lessons-chipping-norton.jpg
+img/opt/Learner-driver-training-wilby-street.webp
+img/Learner-driver-training-wilby-street.jpg
+img/opt/driving-lessons-liverpool-campbelltown-hero.webp
+img/driving-lessons-liverpool-campbelltown-hero.jpg
+img/opt/overseas-licence-conversion-lessons-liverpool.webp
+img/overseas-licence-conversion-lessons-liverpool.jpg
+img/opt/refresher-driving-lessons-campbelltown-licensed-driver.webp
+img/refresher-driving-lessons-campbelltown-licensed-driver.jpg
+img/opt/george-campbelltown-instructor.webp
+img/george-campbelltown-instructor.jpeg
+img/opt/ashraf-senior-driving-instructor-liverpool1.webp
+img/ashraf-senior-driving-instructor-liverpool1.jpg
+img/opt/student-p-plates-sydney-south-car.webp
+img/student-p-plates-sydney-south-car.jpg
+img/opt/sydney-south-drving-school-student-3-300x300.webp
+img/sydney-south-drving-school-student-3-300x300.jpg
+img/opt/amanda-passed-driving-test-liverpool.webp
+img/amanda-passed-driving-test-liverpool.jpg
+img/opt/driving-instruction-liverpool-nsw1.webp
+img/driving-instruction-liverpool-nsw1.jpg
+img/opt/driving-school-liverpool-center-p-plate-success.webp
+img/driving-school-liverpool-center-p-plate-success.jpg
+img/opt/chipping-norton-driving-lessons-liverpool-driving-school-car.webp
+img/chipping-norton-driving-lessons-liverpool-driving-school-car.jpg
+img/opt/3-points-turn-Derby-crescent.webp
+img/3-points-turn-Derby-crescent.jpg
+img/opt/car-driving-tuition.webp
+img/car-driving-tuition.jpg
+img/opt/chipping-norton-driving-lessons-liverpool-new-driver-p-sign.webp
+img/chipping-norton-driving-lessons-liverpool-new-driver-p-sign.jpg
+img/opt/driving-lesson-success-chipping-norton-driving-lessons-liverpool.webp
+img/driving-lesson-success-chipping-norton-driving-lessons-liverpool.jpg
+img/opt/learner-driver-lessons-liverpool-new-driver-successful-test.webp
+img/learner-driver-lessons-liverpool-new-driver-successful-test.jpg
+img/opt/learner-driver-lessons-liverpool-p-plate-success.webp
+img/learner-driver-lessons-liverpool-p-plate-success.jpg
+img/opt/learner-driver-lessons-liverpool-parking-lot-success.webp
+img/learner-driver-lessons-liverpool-parking-lot-success.jpg
+img/opt/logbook-hours-3-for-1-liverpool-learner-driver.webp
+img/logbook-hours-3-for-1-liverpool-learner-driver.jpg
