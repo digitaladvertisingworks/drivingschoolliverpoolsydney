@@ -1,14 +1,13 @@
-// Serves /campbelltown/* from somewhere other than this repo.
+// Serves /campbelltown/* from a WordPress install on a different host.
 //
-// STAGE 1 (now): WP_ORIGIN is null, so the Worker answers /campbelltown/
-// itself with a built-in confirmation page. This proves the routing works
-// and, more importantly, proves the rest of the site is unaffected.
+// The rest of the site is static assets in this repo and never touches the
+// WordPress origin. If the proxy or the origin fails, the catch block falls
+// back to the assets so the main site cannot be taken down by this file.
 //
-// STAGE 2 (later): set WP_ORIGIN to the WordPress host, e.g.
-//   const WP_ORIGIN = "wp-origin.example.com";
-// and the same file reverse-proxies instead. Nothing else changes.
+// To disconnect WordPress, set WP_ORIGIN back to null. The Worker then answers
+// /campbelltown/ with the built-in placeholder and nothing else changes.
 
-const WP_ORIGIN = null;
+const WP_ORIGIN = "wp-origin.drivingschoolliverpool.sydney";
 const WP_PREFIX = "/campbelltown";
 
 export default {
@@ -23,12 +22,19 @@ export default {
 
       if (!WP_ORIGIN) return stageOnePage(url);
 
+      // WordPress is installed at the root of the origin, not in a folder named
+      // campbelltown, so the prefix comes off on the way out and goes back on
+      // any Location header on the way home.
       const target = new URL(url);
       target.hostname = WP_ORIGIN;
       target.protocol = "https:";
       target.port = "";
+      target.pathname = url.pathname.slice(WP_PREFIX.length) || "/";
 
       const headers = new Headers(request.headers);
+      // Let the Host header come from the target URL, or Hostinger serves the
+      // wrong vhost.
+      headers.delete("host");
       headers.set("X-Forwarded-Host", url.hostname);
       headers.set("X-Forwarded-Proto", "https");
 
@@ -45,12 +51,7 @@ export default {
       // which is what keeps the WordPress login working.
       const res = new Response(upstream.body, upstream);
       const loc = res.headers.get("location");
-      if (loc) {
-        res.headers.set(
-          "location",
-          loc.split("https://" + WP_ORIGIN).join("https://" + url.hostname)
-        );
-      }
+      if (loc) res.headers.set("location", publicLocation(loc, url.hostname));
       return res;
     } catch (err) {
       // Never take the static site down because this script or the origin failed.
@@ -58,6 +59,30 @@ export default {
     }
   },
 };
+
+// Turns an origin-shaped redirect into one the visitor's browser can follow.
+// Absolute URLs on the origin get swapped for the public prefix. Root-relative
+// paths get the prefix added. Anything already public is left alone.
+function publicLocation(loc, host) {
+  const publicBase = "https://" + host + WP_PREFIX;
+
+  for (const scheme of ["https://", "http://"]) {
+    const originBase = scheme + WP_ORIGIN;
+    if (loc.startsWith(originBase)) {
+      return publicBase + (loc.slice(originBase.length) || "/");
+    }
+  }
+
+  if (
+    loc.startsWith("/") &&
+    loc !== WP_PREFIX &&
+    !loc.startsWith(WP_PREFIX + "/")
+  ) {
+    return WP_PREFIX + loc;
+  }
+
+  return loc;
+}
 
 function stageOnePage(url) {
   const body =
